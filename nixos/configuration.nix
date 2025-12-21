@@ -13,12 +13,14 @@
     # inputs.xremap-flake.nixosModules.default
   ];
 
-  # Bootloader.
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/vda";
-    useOSProber = true;
-  };
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.grub = {
+  #  enable = true;
+  #  device = "/dev/sda1";
+  #   useOSProber = true;
+  # };
 
   networking = {
     hostName = systemSettings.hostname; # Define your hostname.
