@@ -12,6 +12,7 @@
 in {
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.zen-browser.homeModules.twilight
     ./dotfiles
     ../modules/home-manager/gnome.nix
     ../modules/home-manager/spicetify.nix
@@ -39,6 +40,7 @@ in {
     bat
     starship
     yazi
+    delta
 
     # GUI Apps
     kitty
@@ -54,6 +56,8 @@ in {
     nautilus
     xournalpp
   ];
+
+  programs.zen-browser.enable = true;
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;

@@ -6,13 +6,13 @@ pkgs.writeShellScriptBin "rebuild" ''
   # A rebuild script that commits on a successful build
   set -e
 
-  # Edit your config
-  $EDITOR ${nixosDirectory}
-
   # cd to your config dir
   pushd ${nixosDirectory}
 
-  # Early return if no changes were detected (thanks @singiamtel!)
+  # Edit your config
+  $EDITOR ${nixosDirectory}
+
+  # Early return if no changes were detected
   if ${pkgs.git}/bin/git diff --quiet '*.nix' ; then
       echo "No changes detected, exiting."
       popd
