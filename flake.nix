@@ -12,7 +12,7 @@
     xremap-flake.url = "github:xremap/nix-flake";
     xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
 
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
