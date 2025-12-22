@@ -79,10 +79,10 @@
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
       ];
 
-    # Favorite apps
+    # Pinned apps
     "org/gnome/shell".favorite-apps = [
       "kitty.desktop"
-      "google-chrome.desktop"
+      "zen-browser.desktop"
       "nautilus.desktop"
       "spotify.desktop"
     ];
