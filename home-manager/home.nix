@@ -12,7 +12,7 @@
 in {
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    inputs.zen-browser.homeModules.twilight
+    inputs.zen-browser.homeModules.beta
     ./dotfiles
     ../modules/home-manager/gnome.nix
     ../modules/home-manager/spicetify.nix
@@ -57,7 +57,12 @@ in {
     xournalpp
   ];
 
-  programs.zen-browser.enable = true;
+  programs.zen-browser = {
+    enable = true;
+    profiles = {
+      ${userSettings.username} = {};
+    };
+  };
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;
@@ -75,6 +80,7 @@ in {
   stylix = {
     enable = true;
     targets.neovim.enable = false;
+    targets.zen-browser.profileNames = [userSettings.username];
 
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";

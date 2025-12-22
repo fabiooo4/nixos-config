@@ -96,7 +96,7 @@
           inherit userSettings;
         };
         modules = [
-          inputs.stylix.homeManagerModules.stylix
+          inputs.stylix.homeModules.stylix
           ./home-manager/home.nix
         ];
       };

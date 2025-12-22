@@ -40,7 +40,7 @@ pkgs.writeShellScriptBin "rebuild" ''
   ${pkgs.nh}/bin/nh home switch ${nixosDirectory} -c user || exit 1
 
   # Get current generation metadata
-  current=$(nixos-rebuild list-generations | grep current)
+  current=$(nixos-rebuild list-generations | grep True | head -c 65 | sed "s/ * /  /g")
 
   # Commit all changes witih the generation metadata
   ${pkgs.git}/bin/git commit -am "$current"
