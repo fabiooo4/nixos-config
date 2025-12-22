@@ -10,16 +10,16 @@
     };
 
     xremap-flake.url = "github:xremap/nix-flake";
-    xremap-flake.inputs.nixkpgs.follows = "nixpkgs";
+    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
-    stylix.inputs.nixkpgs.follows = "nixpkgs";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    nix-flatpak.inputs.nixkpgs.follows = "nixpkgs";
+    nix-flatpak.inputs.nixpkgs.follows = "nixpkgs";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixkpgs.follows = "nixpkgs";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
