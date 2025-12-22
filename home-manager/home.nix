@@ -64,6 +64,16 @@ in {
     };
   };
 
+  # Manually assign kitty icon
+  xdg.desktopEntries.kitty = {
+    name = "kitty";
+    genericName = "Terminal Emulator";
+    exec = "kitty";
+    terminal = false;
+    categories = ["System" "TerminalEmulator"];
+    icon = "/home/${userSettings.username}/.config/kitty/kitty.app.png";
+  };
+
   home.sessionVariables = {
     EDITOR = userSettings.editor;
     BROWSER = userSettings.browser;
