@@ -43,6 +43,7 @@ in {
     delta
 
     # GUI Apps
+    kitty
     google-chrome
     vesktop
     showtime
@@ -55,18 +56,6 @@ in {
     nautilus
     xournalpp
   ];
-
-  # NOTE: Temporary fix for broken wayland support
-  # When it gets fixed replace all with kitty in the pkgs lit
-  # Overwrite the package by appending x11 flag
-  programs.kitty = {
-    enable = true;
-    extraConfig = ''
-      linux_display_server x11
-
-      include ~/.dotfiles/.config/kitty/kitty.conf
-    '';
-  };
 
   programs.zen-browser = {
     enable = true;

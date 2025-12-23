@@ -27,6 +27,11 @@ in {
   #   useOSProber = true;
   # };
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true; # Needed for some 32-bit apps/games
+  };
+
   networking = {
     hostName = systemSettings.hostname; # Define your hostname.
 

@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    # ./kitty.nix
+    ./kitty.nix
     ./zsh.nix
     ./latex.nix
     ./git.nix
