@@ -55,17 +55,18 @@ in {
     nautilus
     xournalpp
 
+    kitty
     # NOTE: Temporary fix for broken wayland support
     # When it gets fixed replace all () with kitty
     # Ovverrite the package by appending x11 flag
-    (symlinkJoin {
-      name = "kitty";
-      paths = [kitty];
-      buildInputs = [makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/kitty --add-flags "-o linux_display_server=x11"
-      '';
-    })
+    # (symlinkJoin {
+    #   name = "kitty";
+    #   paths = [kitty];
+    #   buildInputs = [makeWrapper];
+    #   postBuild = ''
+    #     wrapProgram $out/bin/kitty --add-flags "-o linux_display_server=x11"
+    #   '';
+    # })
   ];
 
   programs.zen-browser = {
