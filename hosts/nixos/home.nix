@@ -71,7 +71,7 @@ in {
     FLAKE = userSettings.nixosConfigDir;
 
     # TODO: termporary fix to glfw error on wayland
-    KITTY_DISABLE_WAYLAND = "1";
+    KITTY_DISABLE_WAYLAND = 1;
   };
 
   # Flatpaks
