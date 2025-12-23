@@ -54,20 +54,19 @@ in {
     gnome-characters
     nautilus
     xournalpp
-
-    kitty
-    # NOTE: Temporary fix for broken wayland support
-    # When it gets fixed replace all () with kitty
-    # Ovverrite the package by appending x11 flag
-    # (symlinkJoin {
-    #   name = "kitty";
-    #   paths = [kitty];
-    #   buildInputs = [makeWrapper];
-    #   postBuild = ''
-    #     wrapProgram $out/bin/kitty --add-flags "-o linux_display_server=x11"
-    #   '';
-    # })
   ];
+
+  # NOTE: Temporary fix for broken wayland support
+  # When it gets fixed replace all with kitty in the pkgs lit
+  # Overwrite the package by appending x11 flag
+  programs.kitty = {
+    enable = true;
+    extraConfig = ''
+      linux_display_server x11
+
+      include ~/.dotfiles/.config/kitty/kitty.conf
+    '';
+  };
 
   programs.zen-browser = {
     enable = true;
