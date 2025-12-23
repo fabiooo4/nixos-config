@@ -57,7 +57,7 @@
       };
       term = "kitty"; # Default terminal command
       editor = "nvim"; # Default editor
-      browser = "google-chrome"; # Default browser
+      browser = "zen-beta"; # Default browser
     };
 
     pkgs = nixpkgs.legacyPackages.${systemSettings.system};
