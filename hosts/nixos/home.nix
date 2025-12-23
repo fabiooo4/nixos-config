@@ -74,9 +74,6 @@ in {
     KITTY_DISABLE_WAYLAND = 1;
   };
 
-  # Activate to make sessionVariables take effect
-  programs.bash.enable = true;
-
   # Flatpaks
   services.flatpak.packages = [
     "com.github.ahrm.sioyek"
