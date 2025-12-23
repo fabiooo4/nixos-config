@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  systemSettings,
   userSettings,
   ...
 }: let
