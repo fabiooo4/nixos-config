@@ -82,8 +82,8 @@
     # Pinned apps
     "org/gnome/shell".favorite-apps = [
       "kitty.desktop"
-      "nautilus.desktop"
       "zen-beta.desktop"
+      "org.gnome.Nautilus.desktop"
       "spotify.desktop"
     ];
 
