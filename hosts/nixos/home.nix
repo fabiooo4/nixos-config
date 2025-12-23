@@ -91,6 +91,7 @@ in {
   stylix = {
     enable = true;
     targets.neovim.enable = false;
+    targets.kitty.enable = false;
     targets.zen-browser.profileNames = [userSettings.username];
 
     polarity = "dark";
