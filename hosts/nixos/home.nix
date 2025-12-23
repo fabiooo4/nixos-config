@@ -5,7 +5,7 @@
   userSettings,
   ...
 }: let
-  rebuild-script = import ../scripts/rebuild.nix {
+  rebuild-script = import ../../scripts/rebuild.nix {
     inherit pkgs;
     nixosDirectory = userSettings.nixosConfigDir;
   };
@@ -13,9 +13,9 @@ in {
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.zen-browser.homeModules.beta
-    ./dotfiles
-    ../modules/home-manager/gnome.nix
-    ../modules/home-manager/spicetify.nix
+    ../../modules/home-manager/dotfiles
+    ../../modules/home-manager/gnome.nix
+    ../../modules/home-manager/spicetify.nix
   ];
   nixpkgs.config.allowUnfree = true;
 

@@ -5,7 +5,13 @@
   systemSettings,
   userSettings,
   ...
-}: {
+}: let
+  systemSettings = {
+    hostname = "nixos"; # hostname
+    timezone = "Europe/Rome"; # select timezone
+    locale = "en_US.UTF-8"; # select locale
+  };
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix

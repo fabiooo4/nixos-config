@@ -26,17 +26,11 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     ...
   } @ inputs: let
-    systemSettings = {
-      system = "x86_64-linux"; # system arch
-      hostname = "nixos"; # hostname
-      timezone = "Europe/Rome"; # select timezone
-      locale = "en_US.UTF-8"; # select locale
-    };
+    system = "x86_64-linux"; # system arch
 
     userSettings = {
       username = "fabibo"; # username
@@ -60,24 +54,13 @@
       browser = "zen-beta"; # Default browser
     };
 
-    pkgs = nixpkgs.legacyPackages.${systemSettings.system};
-
-    # Systems that can run tests:
-    supportedSystems = ["aarch64-linux" "i686-linux" "x86_64-linux"];
-
-    # Function to generate a set based on supported systems:
-    forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
-
-    # Attribute set of nixpkgs for each system:
-    nixpkgsFor =
-      forAllSystems (system: import inputs.nixpkgs {inherit system;});
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
       system = nixpkgs.lib.nixosSystem {
-        system = systemSettings.system;
+        system = system;
         specialArgs = {
           inherit inputs;
-          inherit systemSettings;
           inherit userSettings;
         };
         modules = [
@@ -95,36 +78,13 @@
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs;
-          inherit systemSettings;
           inherit userSettings;
         };
         modules = [
           inputs.stylix.homeModules.stylix
-          ./home-manager/home.nix
+          ./hosts/nixos/home.nix
         ];
       };
     };
-
-    # Add install script to the packages
-    packages = forAllSystems (system: let
-      pkgs = nixpkgsFor.${system};
-    in {
-      default = self.packages.${system}.install;
-
-      install = pkgs.writeShellApplication {
-        name = "install";
-        runtimeInputs = with pkgs; [git nh];
-        text = ''${./install.sh} "$@"'';
-      };
-    });
-
-    apps = forAllSystems (system: {
-      default = self.apps.${system}.install;
-
-      install = {
-        type = "app";
-        program = "${self.packages.${system}.install}/bin/install";
-      };
-    });
   };
 }
