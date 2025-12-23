@@ -64,7 +64,7 @@ in {
     };
   };
 
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     EDITOR = userSettings.editor;
     BROWSER = userSettings.browser;
     TERMINAL = userSettings.term;
