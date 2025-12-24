@@ -36,6 +36,7 @@
       texliveFull
       gnumake
       rustup
+      python3
       # --------------
     ];
   };

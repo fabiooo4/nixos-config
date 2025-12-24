@@ -24,4 +24,8 @@
       source = config.lib.file.mkOutOfStoreSymlink "${userSettings.dotfilesDir}/.zsh";
     };
   };
+
+  home.packages = with pkgs; [
+    pyenv
+  ];
 }
