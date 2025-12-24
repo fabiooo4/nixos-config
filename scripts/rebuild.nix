@@ -26,6 +26,8 @@ pkgs.writeShellScriptBin "rebuild" ''
   # Shows your changes
   ${pkgs.git}/bin/git diff -U0 '*.nix'
 
+  ${pkgs.git}/bin/git add .
+
   # echo -e "NixOS Rebuilding..."
   # Rebuild, output simplified errors and progress, log tracebacks
   # sudo nixos-rebuild switch --flake ${nixosDirectory} &> >(tee nixos-switch.log) ||
