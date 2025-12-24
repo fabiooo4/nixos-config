@@ -57,7 +57,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
-      system = nixpkgs.lib.nixosSystem {
+      nixos = nixpkgs.lib.nixosSystem {
         system = system;
         specialArgs = {
           inherit inputs;
@@ -74,7 +74,7 @@
     };
 
     homeConfigurations = {
-      user = home-manager.lib.homeManagerConfiguration {
+      fabibo = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs;
