@@ -192,8 +192,10 @@
 
     profiles = {
       ${userSettings.username} = {
-        keyboard-shortcuts = {
-          source = ./zen-keyboard-shortcuts.json;
+        keyboard-shortcuts = let
+          zenShortcuts = import ./zen_keybinds.nix;
+        in {
+          source = pkgs.writeText "zen-keyboard-shortcuts.json" (builtins.toJSON zenShortcuts);
         };
 
         pinsForce = true;
