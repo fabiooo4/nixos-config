@@ -17,8 +17,29 @@
     };
 
     spaces = {
+      "Main" = {
+        id = "2441acc9-79b1-4afb-b582-ee88ce554ec1";
+        container = containers.Utils.id;
+        icon = "🏵️";
+        position = 2000;
+        theme = {
+          type = "gradient";
+          colors = [
+            {
+              red = 190;
+              green = 160;
+              blue = 130;
+              algorithm = "floating";
+              type = "explicit-lightness";
+            }
+          ];
+          opacity = 0.2;
+          texture = 0.5;
+        };
+      };
       "Nix" = {
         id = "2441acc9-79b1-4afb-b582-ee88ce554ec0";
+        container = containers.Utils.id;
         icon = "❄️";
         position = 3000;
         theme = {
