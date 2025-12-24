@@ -12,10 +12,10 @@
 in {
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    inputs.zen-browser.homeModules.beta
     ../../modules/home-manager/dotfiles
     ../../modules/home-manager/gnome.nix
     ../../modules/home-manager/spicetify.nix
+    ../../modules/home-manager/browser/zen.nix
   ];
   nixpkgs.config.allowUnfree = true;
 
@@ -57,13 +57,6 @@ in {
     xournalpp
   ];
 
-  programs.zen-browser = {
-    enable = true;
-    profiles = {
-      ${userSettings.username} = {};
-    };
-  };
-
   systemd.user.sessionVariables = {
     EDITOR = userSettings.editor;
     BROWSER = userSettings.browser;
@@ -85,7 +78,6 @@ in {
     enable = true;
     targets.neovim.enable = false;
     targets.kitty.enable = false;
-    targets.zen-browser.profileNames = [userSettings.username];
 
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
