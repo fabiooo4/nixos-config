@@ -15,7 +15,7 @@ in {
     ../../modules/home-manager/dotfiles
     ../../modules/home-manager/gnome.nix
     ../../modules/home-manager/spicetify.nix
-    ../../modules/home-manager/browser/zen.nix
+    ../../modules/home-manager/browser/zen/zen.nix
   ];
   nixpkgs.config.allowUnfree = true;
 

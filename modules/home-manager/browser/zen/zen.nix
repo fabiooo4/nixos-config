@@ -10,7 +10,11 @@
   programs.zen-browser = {
     enable = true;
     profiles = {
-      ${userSettings.username} = {};
+      ${userSettings.username} = {
+        keyboard-shortcuts = {
+          source = ./zen-keyboard-shortcuts.json;
+        };
+      };
     };
   };
 
