@@ -145,7 +145,8 @@ in {
             "capslock" = "esc";
           };
         }
-
+      ];
+      modmap = [
         {
           name = "Super to Logitech G2 Key G8";
           remap = {
