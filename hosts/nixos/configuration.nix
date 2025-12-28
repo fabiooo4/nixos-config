@@ -148,12 +148,10 @@ in {
             "capslock" = "esc";
           };
         }
-      ];
-      modmap = [
         {
           name = "Super to Logitech G2 Key G8";
           remap = {
-            "BTN_FORWARD" = "super_l";
+            "C-S-backslash" = "super_l";
           };
         }
       ];
