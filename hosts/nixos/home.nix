@@ -57,6 +57,24 @@ in {
     xournalpp
   ];
 
+  # Flatpaks
+  services.flatpak.packages = [
+    "com.github.ahrm.sioyek"
+  ];
+
+  # Change desktop apps data
+  xdg.desktopEntries = {
+    kitty = {
+      icon = "/home/" + userSettings.username + "/.config/kitty/kitty.app.png";
+      name = "Kitty";
+      genericName = "Terminal";
+      terminal = true;
+      categories = ["System" "TerminalEmulator"];
+      mimeType = ["application/x-tty"];
+      exec = "kitty";
+    };
+  };
+
   systemd.user.sessionVariables = {
     EDITOR = userSettings.editor;
     BROWSER = userSettings.browser;
@@ -67,11 +85,6 @@ in {
     # TODO: termporary fix to glfw error on wayland
     KITTY_DISABLE_WAYLAND = 1;
   };
-
-  # Flatpaks
-  services.flatpak.packages = [
-    "com.github.ahrm.sioyek"
-  ];
 
   # Style
   stylix = {
