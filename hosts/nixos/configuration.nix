@@ -137,9 +137,6 @@ in {
     userName = userSettings.username;
     withGnome = true;
     mouse = true;
-    deviceNames = [
-      "Logitech G502 HERO SE Keyboard"
-    ];
     config = {
       keymap = [
         {
