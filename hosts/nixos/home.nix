@@ -63,17 +63,17 @@ in {
   ];
 
   # Change desktop apps data
-  xdg.desktopEntries = {
-    kitty = {
-      icon = "/home/" + userSettings.username + "/.config/kitty/kitty.app.png";
-      name = "Kitty";
-      genericName = "Terminal";
-      terminal = true;
-      categories = ["System" "TerminalEmulator"];
-      mimeType = ["application/x-tty"];
-      exec = "kitty";
-    };
-  };
+  # xdg.desktopEntries = {
+  #   kitty = {
+  #     icon = "/home/" + userSettings.username + "/.config/kitty/kitty.app.png";
+  #     name = "Kitty";
+  #     genericName = "Terminal";
+  #     terminal = true;
+  #     categories = ["System" "TerminalEmulator"];
+  #     mimeType = ["application/x-tty"];
+  #     exec = "kitty";
+  #   };
+  # };
 
   systemd.user.sessionVariables = {
     EDITOR = userSettings.editor;
