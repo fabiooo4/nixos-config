@@ -151,7 +151,7 @@ in {
         {
           name = "Super to Logitech G2 Key G8";
           remap = {
-            "backslash" = "super_l";
+            "backslash" = "a";
           };
         }
       ];
