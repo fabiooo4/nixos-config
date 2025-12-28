@@ -149,7 +149,7 @@ in {
         {
           name = "Super to Logitech G2 Key G8";
           remap = {
-            "C-S-backslash" = "super_l";
+            "BTN_FORWARD" = "super_l";
           };
         }
       ];
