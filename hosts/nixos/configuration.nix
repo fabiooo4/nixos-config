@@ -136,7 +136,7 @@ in {
     enable = true;
     userName = userSettings.username;
     withGnome = true;
-    # mouse = true;
+    mouse = true;
     config = {
       keymap = [
         {
@@ -147,9 +147,9 @@ in {
         }
 
         {
-          name = "Super to mouse";
+          name = "Super to Logitech G2 Key G8";
           remap = {
-            "BTN_MIDDLE" = "super_l";
+            "C-S-backslash" = "super_l";
           };
         }
       ];
