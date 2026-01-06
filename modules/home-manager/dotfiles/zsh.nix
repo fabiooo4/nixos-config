@@ -28,8 +28,4 @@
   home.packages = with pkgs; [
     pyenv
   ];
-
-  home.shellAliases = {
-    "nix develop" = "nix develop --command zsh";
-  };
 }

@@ -41,6 +41,7 @@ in {
     starship
     yazi
     delta
+    codegrab
 
     # GUI Apps
     kitty
