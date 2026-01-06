@@ -1,37 +1,7 @@
 {
   description = "Nixos config flake";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    xremap-flake.url = "github:xremap/nix-flake";
-    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
-
-    stylix.url = "github:danth/stylix/release-25.11";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Commit for keyboard shortcuts options
-    zen-browser.url = "github:0xc000022070/zen-browser-flake/85ef44c";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    zen-browser.inputs.home-manager.follows = "home-manager";
-  };
-
-  outputs = {
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux"; # system arch
 
     userSettings = {
@@ -56,7 +26,13 @@
       browser = "zen-beta"; # Default browser
     };
 
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import inputs.nixpkgs-unstable {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+    };
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
@@ -66,16 +42,28 @@
           inherit userSettings;
         };
         modules = [
+          {config.networking.hostName = "nixos";}
+          (./hosts + "/nixos")
+
+          ./modules/system
+
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = {
+              inherit pkgs;
+              inherit inputs;
+              inherit userSettings;
+            };
+          }
+
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.xremap-flake.nixosModules.default
-          inputs.stylix.nixosModules.stylix
-
-          ./hosts/nixos/configuration.nix
         ];
       };
     };
 
-    homeConfigurations = {
+    /*
+       homeConfigurations = {
       fabibo = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
@@ -88,5 +76,32 @@
         ];
       };
     };
+    */
+  };
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    xremap-flake.url = "github:xremap/nix-flake";
+    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:danth/stylix/release-25.11";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Commit for keyboard shortcuts options
+    zen-browser.url = "github:0xc000022070/zen-browser-flake/85ef44c";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    zen-browser.inputs.home-manager.follows = "home-manager";
   };
 }

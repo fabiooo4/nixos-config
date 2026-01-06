@@ -4,263 +4,227 @@
   inputs,
   userSettings,
   ...
-}: let
-  systemSettings = {
-    hostname = "nixos"; # hostname
-    timezone = "Europe/Rome"; # select timezone
-    locale = "en_US.UTF-8"; # select locale
-  };
-in {
+}: {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    # inputs.home-manager.nixosModules.default
-    # inputs.xremap-flake.nixosModules.default
+    ../../modules/system/stylix
   ];
+  config = {
+    systemSettings = {
+      users = ["fabibo"];
+      adminUsers = ["fabibo"];
 
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.loader.grub = {
-  #  enable = true;
-  #  device = "/dev/sda1";
-  #   useOSProber = true;
-  # };
-
-  hardware = {
-    # Enable opengl
-    graphics = {
-      enable = true;
-      enable32Bit = true; # Needed for some 32-bit apps/games
+      stylix.enable = true;
     };
 
-    nvidia = {
-      modesetting.enable = true;
-
-      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-      # Enable this if you have graphical corruption issues or application crashes after waking
-      # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-      # of just the bare essentials.
-      powerManagement.enable = false;
-
-      # Fine-grained power management. Turns off GPU when not in use.
-      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-      powerManagement.finegrained = false;
-
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of
-      # supported GPUs is at:
-      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-      # Only available from driver 515.43.04+
-      open = true;
-
-      # Enable the Nvidia settings menu,
-      # accessible via `nvidia-settings`.
-      nvidiaSettings = true;
-
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
-
-  # Enable the X11 windowing system with nvidia drivers
-  services = {
-    xserver = {
-      enable = true;
-      videoDrivers = ["nvidia"];
-    };
-  };
-
-  networking = {
-    hostName = systemSettings.hostname; # Define your hostname.
-
-    # Enable networking
-    networkmanager.enable = true;
-
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    # Configure network proxy if necessary
-    # proxy = {
-    #    default = "http://user:password@proxy:port/";
-    #    noProxy = "127.0.0.1,localhost,internal.domain";
+    # Bootloader
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+    # boot.loader.grub = {
+    #  enable = true;
+    #  device = "/dev/sda1";
+    #   useOSProber = true;
     # };
-  };
 
-  # Set your time zone.
-  time.timeZone = systemSettings.timezone;
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = systemSettings.locale;
-
-    extraLocaleSettings = {
-      LC_ADDRESS = "it_IT.UTF-8";
-      LC_IDENTIFICATION = "it_IT.UTF-8";
-      LC_MEASUREMENT = "it_IT.UTF-8";
-      LC_MONETARY = "it_IT.UTF-8";
-      LC_NAME = "it_IT.UTF-8";
-      LC_NUMERIC = "it_IT.UTF-8";
-      LC_PAPER = "it_IT.UTF-8";
-      LC_TELEPHONE = "it_IT.UTF-8";
-      LC_TIME = "it_IT.UTF-8";
-    };
-  };
-
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-  services.gnome.core-apps.enable = false;
-
-  # Remove default programs
-  documentation.nixos.enable = false;
-  documentation.man.enable = true;
-  services.xserver.excludePackages = [pkgs.xterm];
-  environment = {
-    gnome.excludePackages = with pkgs; [
-      gnome-tour
-    ];
-    extraSetup = ''
-      rm $out/share/applications/cups.desktop
-    '';
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "intl";
-  };
-
-  # Configure remaps
-  services.xremap = {
-    enable = true;
-    userName = userSettings.username;
-    withGnome = true;
-    mouse = true;
-    config = {
-      keymap = [
-        {
-          name = "Capslock to Esc";
-          remap = {
-            "capslock" = "esc";
-          };
-        }
-        {
-          name = "Super to Logitech G2 Key G8";
-          remap = {
-            "Ctrl_L-Shift_L-backslash" = "super_l";
-          };
-        }
-      ];
-    };
-  };
-
-  # Configure console keymap
-  console.keyMap = "us-acentos";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${userSettings.username} = {
-    isNormalUser = true;
-    description = userSettings.name;
-    extraGroups = ["networkmanager" "wheel"];
-    packages = [
-    ];
-  };
-
-  # Enable automatic login for the user.
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "fabio";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Activate flakes
-  nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
-    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = [];
-
-  # Flatpaks
-  services.flatpak.enable = true;
-  services.flatpak.update.auto = {
-    enable = true;
-    onCalendar = "weekly"; # Default value
-  };
-
-  # Change default shell to zsh
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-  ];
-
-  # Style
-  stylix = {
-    enable = true;
-    targets.chromium.enable = false;
-
-    polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-
-    image = userSettings.wallpaper;
-    cursor = {
-      package = userSettings.cursorPkg;
-      name = userSettings.cursor;
-      size = 24;
-    };
-    fonts = {
-      monospace = {
-        package = userSettings.fontPkg;
-        name = userSettings.font;
+    hardware = {
+      # Enable opengl
+      graphics = {
+        enable = true;
+        enable32Bit = true; # Needed for some 32-bit apps/games
       };
-      serif = config.stylix.fonts.monospace;
-      sansSerif = config.stylix.fonts.monospace;
+
+      nvidia = {
+        modesetting.enable = true;
+
+        # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+        # Enable this if you have graphical corruption issues or application crashes after waking
+        # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+        # of just the bare essentials.
+        powerManagement.enable = false;
+
+        # Fine-grained power management. Turns off GPU when not in use.
+        # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+        powerManagement.finegrained = false;
+
+        # Use the NVidia open source kernel module (not to be confused with the
+        # independent third-party "nouveau" open source driver).
+        # Support is limited to the Turing and later architectures. Full list of
+        # supported GPUs is at:
+        # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+        # Only available from driver 515.43.04+
+        open = true;
+
+        # Enable the Nvidia settings menu,
+        # accessible via `nvidia-settings`.
+        nvidiaSettings = true;
+
+        # Optionally, you may need to select the appropriate driver version for your specific GPU.
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+      };
     };
+
+    # Enable the X11 windowing system with nvidia drivers
+    services = {
+      xserver = {
+        enable = true;
+        videoDrivers = ["nvidia"];
+      };
+    };
+
+    networking = {
+      # Enable networking
+      networkmanager.enable = true;
+
+      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      # Configure network proxy if necessary
+      # proxy = {
+      #    default = "http://user:password@proxy:port/";
+      #    noProxy = "127.0.0.1,localhost,internal.domain";
+      # };
+    };
+
+    # Set your time zone.
+    time.timeZone = "Europe/Rome";
+
+    # Select internationalisation properties.
+    i18n = {
+      defaultLocale = "en_US.UTF-8";
+
+      extraLocaleSettings = {
+        LC_ADDRESS = "it_IT.UTF-8";
+        LC_IDENTIFICATION = "it_IT.UTF-8";
+        LC_MEASUREMENT = "it_IT.UTF-8";
+        LC_MONETARY = "it_IT.UTF-8";
+        LC_NAME = "it_IT.UTF-8";
+        LC_NUMERIC = "it_IT.UTF-8";
+        LC_PAPER = "it_IT.UTF-8";
+        LC_TELEPHONE = "it_IT.UTF-8";
+        LC_TIME = "it_IT.UTF-8";
+      };
+    };
+
+    # Enable the GNOME Desktop Environment.
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
+
+    services.gnome.core-apps.enable = false;
+
+    # Remove default programs
+    documentation.nixos.enable = false;
+    documentation.man.enable = true;
+    services.xserver.excludePackages = [pkgs.xterm];
+    environment = {
+      gnome.excludePackages = with pkgs; [
+        gnome-tour
+      ];
+      extraSetup = ''
+        rm $out/share/applications/cups.desktop
+      '';
+    };
+
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "us";
+      variant = "intl";
+    };
+
+    # Configure remaps
+    services.xremap = {
+      enable = true;
+      userName = userSettings.username;
+      withGnome = true;
+      mouse = true;
+      config = {
+        keymap = [
+          {
+            name = "Capslock to Esc";
+            remap = {
+              "capslock" = "esc";
+            };
+          }
+          {
+            name = "Super to Logitech G2 Key G8";
+            remap = {
+              "Ctrl_L-Shift_L-backslash" = "super_l";
+            };
+          }
+        ];
+      };
+    };
+
+    # Configure console keymap
+    console.keyMap = "us-acentos";
+
+    # Enable CUPS to print documents.
+    services.printing.enable = true;
+
+    # Enable sound with pipewire.
+    services.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      #media-session.enable = true;
+    };
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    # services.xserver.libinput.enable = true;
+
+    # Enable automatic login for the user.
+    # services.xserver.displayManager.autoLogin.enable = true;
+    # services.xserver.displayManager.autoLogin.user = "fabio";
+
+    # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+    systemd.services."getty@tty1".enable = false;
+    systemd.services."autovt@tty1".enable = false;
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    # Activate flakes
+    nix = {
+      settings.experimental-features = ["nix-command" "flakes"];
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+    };
+
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = [];
+
+    # Flatpaks
+    services.flatpak.enable = true;
+    services.flatpak.update.auto = {
+      enable = true;
+      onCalendar = "weekly"; # Default value
+    };
+
+    # Change default shell to zsh
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
+
+    programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = [
+      # Add any missing dynamic libraries for unpackaged programs
+      # here, NOT in environment.systemPackages
+    ];
+
+    # List services that you want to enable:
+
+    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
+
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # networking.firewall.enable = false;
+
+    system.stateVersion = "24.11"; # Don't change
   };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  system.stateVersion = "24.11"; # Don't change
 }

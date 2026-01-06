@@ -238,7 +238,7 @@
               icon = nixSnowflakeIcon;
               definedAliases = ["np"];
             };
-            "Nix Options" = {
+            "NixOS Options" = {
               urls = [
                 {
                   template = "https://search.nixos.org/options";
@@ -256,6 +256,21 @@
               ];
               icon = nixSnowflakeIcon;
               definedAliases = ["nop"];
+            };
+            "Nix Functions" = {
+              urls = [
+                {
+                  template = "https://noogle.dev/";
+                  params = [
+                    {
+                      name = "term";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = nixSnowflakeIcon;
+              definedAliases = ["nf"];
             };
             "Home Manager Options" = {
               urls = [

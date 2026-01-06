@@ -35,11 +35,11 @@ pkgs.writeShellScriptBin "rebuild" ''
   ${pkgs.nh}/bin/nh os switch ${nixosDirectory} -H $(hostname) || exit 1
 
   # echo -e "\n\nHome-Manager Rebuilding..."
-  echo -e "\n\n"
+  # echo -e "\n\n"
   # Rebuild home manager
   # home-manager switch --flake ${nixosDirectory} &> >(tee home-switch.log) ||
   # (echo -e "\n\nError summary:\n" && cat home-switch.log | grep --color "error\|Error" && exit 1)
-  ${pkgs.nh}/bin/nh home switch ${nixosDirectory} -c $(whoami) || exit 1
+  # ${pkgs.nh}/bin/nh home switch ${nixosDirectory} -c $(whoami) || exit 1
 
   # Get current generation metadata
   current=$(nixos-rebuild list-generations | grep True | head -c 65 | sed "s/ * /  /g")
