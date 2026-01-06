@@ -42,6 +42,7 @@ in {
     yazi
     delta
     codegrab
+    xclip # Needed for codegrab
 
     # GUI Apps
     kitty
