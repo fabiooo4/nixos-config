@@ -2,18 +2,34 @@
   config,
   pkgs,
   inputs,
-  userSettings,
   ...
 }: {
   imports = [
     ../../modules/system/stylix
   ];
-  config = {
+  config = let
+    nixosConfigDir = "/home/fabibo/.config/nixconfig"; # TODO: Change to a system wide directory
+  in {
     systemSettings = {
       users = ["fabibo"];
       adminUsers = ["fabibo"];
 
-      stylix.enable = true;
+      stylix = {
+        enable = true;
+        font = {
+          name = "CaskaydiaCove Nerd Font";
+          package = pkgs.nerd-fonts.caskaydia-cove;
+        };
+        cursor = {
+          name = "XCursor-Pro-Dark";
+          package = pkgs.xcursor-pro;
+          size = 24;
+        };
+        wallpaper = pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-5w6w89.png";
+          hash = "sha256-Z+CICFZSN64oIhhe66X7RlNn/gGCYAn30NLNoEHRYJY=";
+        };
+      };
     };
 
     # Bootloader
@@ -130,7 +146,6 @@
     # Configure remaps
     services.xremap = {
       enable = true;
-      userName = userSettings.username;
       withGnome = true;
       mouse = true;
       config = {
@@ -193,9 +208,19 @@
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
 
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = [];
+    environment.systemPackages = let
+      rebuild-script = import ../../scripts/rebuild.nix {
+        inherit pkgs;
+        nixosDirectory = nixosConfigDir;
+      };
+    in [
+      rebuild-script
+    ];
+
+    environment.variables = {
+      FLAKE = nixosConfigDir;
+      NH_FLAKE = nixosConfigDir;
+    };
 
     # Flatpaks
     services.flatpak.enable = true;

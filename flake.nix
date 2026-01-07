@@ -16,18 +16,6 @@
 
     # TODO: move all to modules
     userSettings = {
-      username = "fabibo"; # username
-      name = "Fabibo"; # name/identifier
-      dotfilesDir = "/home/" + userSettings.username + "/.dotfiles"; # absolute path of the local repo
-      nixosConfigDir = "/home/" + userSettings.username + "/.config/nixconfig"; # absolute path of the nix config
-      font = "CaskaydiaCove Nerd Font"; # Selected font
-      fontPkg = pkgs.nerd-fonts.caskaydia-cove; # Font package
-      cursor = "XCursor-Pro-Dark"; # Selected cursor
-      cursorPkg = pkgs.xcursor-pro; # Cursor package
-      wallpaper = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-5w6w89.png";
-        hash = "sha256-Z+CICFZSN64oIhhe66X7RlNn/gGCYAn30NLNoEHRYJY=";
-      };
       profilePicture = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/pfp/nika.png";
         hash = "sha256-m6NYaEL9KZ3GHPbDLUS5Qad9Oh1n60uwukdWMWlq7/o=";

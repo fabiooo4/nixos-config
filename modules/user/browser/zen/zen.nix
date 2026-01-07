@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  userSettings,
   ...
 }: {
   imports = [
@@ -191,7 +190,7 @@
     };
 
     profiles = {
-      ${userSettings.username} = {
+      default = {
         keyboard-shortcuts = let
           zenShortcuts = import ./zen_keybinds.nix;
         in {
@@ -298,5 +297,5 @@
     };
   };
 
-  stylix.targets.zen-browser.profileNames = [userSettings.username];
+  stylix.targets.zen-browser.profileNames = ["default"];
 }

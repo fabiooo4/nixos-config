@@ -1,13 +1,12 @@
 {
   config,
   pkgs,
-  userSettings,
   ...
 }: {
   # Nvim
   home.file = {
     ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${userSettings.dotfilesDir}/.config/nvim";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.userSettings.dotfiles.dotfilesDir}/.config/nvim";
     };
   };
 

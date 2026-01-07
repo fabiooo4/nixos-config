@@ -1,10 +1,4 @@
-{
-  config,
-  inputs,
-  systemSettings,
-  lib,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ./configuration.nix
     ./hardware-configuration.nix

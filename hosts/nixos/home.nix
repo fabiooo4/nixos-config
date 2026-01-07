@@ -1,15 +1,9 @@
 {
-  config,
   pkgs,
   inputs,
   userSettings,
   ...
-}: let
-  rebuild-script = import ../../scripts/rebuild.nix {
-    inherit pkgs;
-    nixosDirectory = userSettings.nixosConfigDir;
-  };
-in {
+}: {
   imports = [
     # TODO: Replace with a default.nix user module
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
@@ -22,7 +16,27 @@ in {
 
   config = {
     userSettings = {
-      stylix.enable = true;
+      dotfiles = {
+        enable = true;
+        dotfilesDir = "/home/fabibo/.dotfiles";
+      };
+
+      stylix = {
+        enable = true;
+        font = {
+          name = "CaskaydiaCove Nerd Font";
+          package = pkgs.nerd-fonts.caskaydia-cove;
+        };
+        cursor = {
+          name = "XCursor-Pro-Dark";
+          package = pkgs.xcursor-pro;
+          size = 24;
+        };
+        wallpaper = pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-5w6w89.png";
+          hash = "sha256-Z+CICFZSN64oIhhe66X7RlNn/gGCYAn30NLNoEHRYJY=";
+        };
+      };
     };
 
     home.stateVersion = "24.11";
@@ -34,7 +48,6 @@ in {
     home.packages = with pkgs; [
       # Nix management
       nh
-      rebuild-script
 
       # CLI Tools
       git
@@ -72,7 +85,7 @@ in {
     # Change desktop apps data
     xdg.desktopEntries = {
       kitty = {
-        icon = "/home/" + userSettings.username + "/.config/kitty/kitty.app.png";
+        icon = "/home/fabibo/.config/kitty/kitty.app.png";
         name = "Kitty";
         exec = "kitty";
         comment = "Fast, feature-rich, GPU based terminal";
@@ -84,8 +97,6 @@ in {
       EDITOR = userSettings.editor;
       BROWSER = userSettings.browser;
       TERMINAL = userSettings.term;
-      FLAKE = userSettings.nixosConfigDir;
-      NH_FLAKE = userSettings.nixosConfigDir;
 
       # TODO: termporary fix to glfw error on wayland
       KITTY_DISABLE_WAYLAND = 1;

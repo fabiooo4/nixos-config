@@ -1,5 +1,6 @@
 {
   config,
+  options,
   lib,
   pkgs,
   inputs,
@@ -9,6 +10,25 @@
   options = {
     userSettings.stylix = {
       enable = lib.mkEnableOption "Enable stylix theming";
+      wallpaper = options.stylix.image;
+      cursor = options.stylix.cursor;
+
+      font = lib.mkOption {
+        default = null;
+        type = lib.types.nullOr (lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              description = "Name of the font.";
+              type = lib.types.str;
+            };
+
+            package = lib.mkOption {
+              description = "Package providing the font.";
+              type = lib.types.package;
+            };
+          };
+        });
+      };
     };
   };
 
@@ -16,9 +36,9 @@
   imports = lib.optionals (!osConfig.stylix.enable) [inputs.stylix.homeModules.stylix];
 
   config = let
-    stylixConf = config.userSettings.stylix;
+    cfg = config.userSettings.stylix;
   in
-    lib.mkIf stylixConf.enable {
+    lib.mkIf cfg.enable {
       qt = {
         enable = true;
         platformTheme.name = lib.mkForce "qtct";
@@ -36,17 +56,10 @@
         polarity = "dark";
         base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
-        image = extraInputs.userSettings.wallpaper;
-        cursor = {
-          package = extraInputs.userSettings.cursorPkg;
-          name = extraInputs.userSettings.cursor;
-          size = 24;
-        };
+        image = cfg.wallpaper;
+        cursor = cfg.cursor;
         fonts = {
-          monospace = {
-            package = extraInputs.userSettings.fontPkg;
-            name = extraInputs.userSettings.font;
-          };
+          monospace = cfg.font;
           serif = config.stylix.fonts.monospace;
           sansSerif = config.stylix.fonts.monospace;
         };
