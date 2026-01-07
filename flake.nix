@@ -2,8 +2,19 @@
   description = "Nixos config flake";
 
   outputs = {nixpkgs, ...} @ inputs: let
+    lib = nixpkgs.lib;
+
+    # Gets the list of hostnames from the names of all the directories inside the input path
+    getHosts = hosts_path:
+      builtins.filter (host: host != null)
+      (lib.mapAttrsToList (name: value:
+        if value == "directory"
+        then name
+        else null) (builtins.readDir hosts_path));
+
     system = "x86_64-linux"; # system arch
 
+    # TODO: move all to modules
     userSettings = {
       username = "fabibo"; # username
       name = "Fabibo"; # name/identifier
@@ -34,49 +45,38 @@
       };
     };
   in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = {
-          inherit inputs;
-          inherit userSettings;
-        };
-        modules = [
-          {config.networking.hostName = "nixos";}
-          (./hosts + "/nixos")
-
-          ./modules/system
-
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = {
-              inherit pkgs;
+    # For each host create a nixosSystem importing the default.nix file in that host directory
+    nixosConfigurations =
+      builtins.listToAttrs
+      (map (host: {
+          name = host;
+          value = nixpkgs.lib.nixosSystem {
+            system = system;
+            specialArgs = {
               inherit inputs;
               inherit userSettings;
             };
-          }
+            modules = [
+              {config.networking.hostName = host;}
+              (./hosts + "/${host}")
 
-          inputs.nix-flatpak.nixosModules.nix-flatpak
-          inputs.xremap-flake.nixosModules.default
-        ];
-      };
-    };
+              ./modules/system
 
-    /*
-       homeConfigurations = {
-      fabibo = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit userSettings;
-        };
-        modules = [
-          inputs.stylix.homeModules.stylix
-          ./hosts/nixos/home.nix
-        ];
-      };
-    };
-    */
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager.extraSpecialArgs = {
+                  inherit pkgs;
+                  inherit inputs;
+                  inherit userSettings;
+                };
+              }
+
+              inputs.nix-flatpak.nixosModules.nix-flatpak
+              inputs.xremap-flake.nixosModules.default
+            ];
+          };
+        })
+        (getHosts ./hosts));
   };
 
   inputs = {

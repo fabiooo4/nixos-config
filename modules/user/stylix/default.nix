@@ -19,10 +19,19 @@
     stylixConf = config.userSettings.stylix;
   in
     lib.mkIf stylixConf.enable {
+      qt = {
+        enable = true;
+        platformTheme.name = lib.mkForce "qtct";
+        style.name = "kvantum";
+      };
+
       stylix = {
         enable = config.userSettings.stylix.enable;
-        targets.neovim.enable = false;
-        targets.kitty.enable = false;
+        targets = {
+          neovim.enable = false;
+          kitty.enable = false;
+          qt.platform = "qtct";
+        };
 
         polarity = "dark";
         base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
