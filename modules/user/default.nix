@@ -1,7 +1,10 @@
 {...}: {
   # TODO: Replace with automatic import from all the directories
   imports = [
-    ./users/default.nix
-    ./stylix/default.nix
+    ./browser
+    ./dotfiles
+    ./gnome
+    ./music
+    ./stylix
   ];
 }

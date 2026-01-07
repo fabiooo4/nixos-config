@@ -7,11 +7,6 @@
   imports = [
     # TODO: Replace with a default.nix user module
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    ../../modules/user/stylix
-    ../../modules/user/dotfiles
-    ../../modules/user/gnome.nix
-    ../../modules/user/spicetify.nix
-    ../../modules/user/browser/zen/zen.nix
   ];
 
   config = {
@@ -91,15 +86,6 @@
         comment = "Fast, feature-rich, GPU based terminal";
         categories = ["System" "TerminalEmulator"];
       };
-    };
-
-    systemd.user.sessionVariables = {
-      EDITOR = userSettings.editor;
-      BROWSER = userSettings.browser;
-      TERMINAL = userSettings.term;
-
-      # TODO: termporary fix to glfw error on wayland
-      KITTY_DISABLE_WAYLAND = 1;
     };
 
     # Nicely reload system units when changing configs

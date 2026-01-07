@@ -7,6 +7,10 @@
     inputs.zen-browser.homeModules.beta
   ];
 
+  systemd.user.sessionVariables = {
+    BROWSER = "zen-beta";
+  };
+
   programs.zen-browser = let
     containers = {
       Utils = {

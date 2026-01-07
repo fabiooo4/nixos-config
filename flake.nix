@@ -20,9 +20,6 @@
         url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/pfp/nika.png";
         hash = "sha256-m6NYaEL9KZ3GHPbDLUS5Qad9Oh1n60uwukdWMWlq7/o=";
       };
-      term = "kitty"; # Default terminal command
-      editor = "nvim"; # Default editor
-      browser = "zen-beta"; # Default browser
     };
 
     pkgs = import inputs.nixpkgs-unstable {

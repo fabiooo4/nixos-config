@@ -12,10 +12,7 @@
           value = {
             imports = [
               ./home.nix
-
-              /*
               ../../modules/user
-              */
             ];
           };
         })

@@ -4,9 +4,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    ../../modules/system/stylix
-  ];
   config = let
     nixosConfigDir = "/home/fabibo/.config/nixconfig"; # TODO: Change to a system wide directory
   in {
@@ -35,12 +32,8 @@
     # Bootloader
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-    # boot.loader.grub = {
-    #  enable = true;
-    #  device = "/dev/sda1";
-    #   useOSProber = true;
-    # };
 
+    # GPU Drivers
     hardware = {
       # Enable opengl
       graphics = {
