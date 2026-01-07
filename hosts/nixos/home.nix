@@ -33,7 +33,6 @@
     };
 
     home.stateVersion = "24.11";
-
     nixpkgs.config.allowUnfree = true;
 
     # The home.packages option allows you to install Nix packages into your
@@ -57,7 +56,6 @@
 
       # GUI Apps
       kitty
-      google-chrome
       vesktop
       showtime
       qalculate-gtk
@@ -76,14 +74,32 @@
       "com.github.ahrm.sioyek"
     ];
 
-    # Change desktop apps data
-    xdg.desktopEntries = {
-      kitty = {
-        icon = "/home/fabibo/.config/kitty/kitty.app.png";
-        name = "Kitty";
-        exec = "kitty";
-        comment = "Fast, feature-rich, GPU based terminal";
-        categories = ["System" "TerminalEmulator"];
+    xdg = {
+      # Change/add desktop entries
+      desktopEntries = {
+        kitty = {
+          icon = "/home/fabibo/.config/kitty/kitty.app.png";
+          name = "Kitty";
+          exec = "kitty";
+          comment = "Fast, feature-rich, GPU based terminal";
+          categories = ["System" "TerminalEmulator"];
+        };
+      };
+
+      # Set default apps for xdg-open
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "text/html" = "zen-beta.desktop";
+          "x-scheme-handler/http" = "zen-beta.desktop";
+          "x-scheme-handler/https" = "zen-beta.desktop";
+          "x-scheme-handler/about" = "zen-beta.desktop";
+          "x-scheme-handler/unknown" = "zen-beta.desktop";
+          "image/png" = "qimgv.desktop";
+          "image/jpeg" = "qimgv.desktop";
+          "application/pdf" = "com.github.ahrm.sioyek.desktop";
+          "text/plain" = "neovide.desktop";
+        };
       };
     };
 
