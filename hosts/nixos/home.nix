@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  userSettings,
   ...
 }: {
   imports = [
@@ -70,12 +69,20 @@
       gnome-characters
       nautilus
       xournalpp
+      qimgv
+
+      # Fix for nvidia qt error
+      (sioyek.overrideAttrs (old: {
+        qtWrapperArgs = (old.qtWrapperArgs or []) ++ ["--set" "QT_QPA_PLATFORM" "xcb"];
+      }))
     ];
 
-    # Flatpaks
+    /*
+       # Flatpaks
     services.flatpak.packages = [
       "com.github.ahrm.sioyek"
     ];
+    */
 
     # Change desktop apps data
     xdg.desktopEntries = {
