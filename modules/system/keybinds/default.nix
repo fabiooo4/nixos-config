@@ -1,0 +1,100 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options = let
+    remapSettings = pkgs.formats.yaml;
+  in {
+    systemSettings = {
+      touchpad.enable = lib.mkEnableOption "touchpad";
+      remaps = lib.mkOption {
+        description = "List of key remaps.";
+        default = null;
+        type = lib.types.nullOr lib.types.submodule {
+          freeformType = remapSettings.type;
+        };
+        example = ''
+          {
+            modmap = [
+              {
+                name = "Global",
+                remap = {
+                  CapsLock = "Esc";
+                  Ctrl_L = "Esc";
+                };
+              }
+            ];
+            keymap = [
+              {
+                name = "Default (Nocturn, etc.)",
+                application = {
+                not = [ "Google-chrome", "Slack", "Gnome-terminal", "jetbrains-idea"];
+                };
+                remap = {
+                  # Emacs basic
+                  "C-b" = "left";
+                  "C-f" = "right";
+                };
+              }
+              {
+                name = "Capslock to Esc";
+                remap = {
+                  "capslock" = "esc";
+                };
+              }
+            ];
+          }
+        '';
+      };
+    };
+  };
+
+  config = let
+    cfg = config.systemSettings;
+
+    defaultRemaps = {
+      keymap = [
+        {
+          name = "Capslock to Esc";
+          remap = {
+            "capslock" = "esc";
+          };
+        }
+        {
+          name = "Super to Logitech G2 Key G8";
+          remap = {
+            "Ctrl_L-Shift_L-backslash" = "super_l";
+          };
+        }
+      ];
+    };
+
+    # Merge the lists in the default values with the custom ones
+    mergeRemaps = r1: r2: lib.zipAttrsWith (name: values: lib.concatLists values) [r1 r2];
+  in {
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "us";
+      variant = "intl";
+    };
+
+    # Configure remaps
+    services.xremap = {
+      enable = true;
+      withGnome = true;
+      mouse = true;
+      config =
+        if cfg.remaps != null
+        then mergeRemaps defaultRemaps cfg.remaps
+        else defaultRemaps;
+    };
+
+    # Configure console keymap
+    console.keyMap = "us-acentos";
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    services.xserver.libinput.enable = lib.mkIf cfg.touchpad.enable true;
+  };
+}
