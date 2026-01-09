@@ -6,5 +6,6 @@
     ./stylix
     ./networking
     ./keybinds
+    ./gnome
   ];
 }
