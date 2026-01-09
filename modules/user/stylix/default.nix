@@ -6,7 +6,7 @@
   inputs,
   osConfig,
   ...
-} @ extraInputs: {
+}: {
   options = {
     userSettings.stylix = {
       enable = lib.mkEnableOption "Enable stylix theming";
@@ -64,7 +64,7 @@
           sansSerif = config.stylix.fonts.monospace;
         };
         iconTheme = {
-          enable = false;
+          enable = true;
           package = pkgs.papirus-icon-theme;
           dark = "Papirus Dark";
           light = "Papirus Light";

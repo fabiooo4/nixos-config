@@ -26,6 +26,7 @@
       luajitPackages.luarocks
       stylua
       nixd
+      nil
       alejandra
       nodePackages.prettier
       ripgrep
