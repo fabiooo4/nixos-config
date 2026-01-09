@@ -6,7 +6,7 @@
   ...
 }: {
   options = let
-    remapSettings = pkgs.formats.yaml;
+    remapSettings = pkgs.formats.yaml {};
   in {
     systemSettings = {
       touchpad.enable = lib.mkEnableOption "touchpad";

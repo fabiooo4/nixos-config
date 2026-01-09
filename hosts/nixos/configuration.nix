@@ -7,6 +7,14 @@
       nvidia.enable = true;
       flatpak.enable = true;
 
+      remaps = {
+        keymap = [
+          {
+            remap = {"C-l" = "esc";};
+          }
+        ];
+      };
+
       stylix = {
         enable = true;
         font = {
