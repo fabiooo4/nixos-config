@@ -48,6 +48,9 @@
       zoom
       gnome-characters
       xournalpp
+
+      # Fonts
+      monocraft
     ];
   };
 }
