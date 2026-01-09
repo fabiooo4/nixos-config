@@ -9,6 +9,7 @@
   in {
     systemSettings = {
       touchpad.enable = lib.mkEnableOption "touchpad";
+
       remaps = lib.mkOption {
         description = "List of key remaps.";
         default = null;
