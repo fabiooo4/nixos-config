@@ -3,10 +3,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-  ];
-
   config = {
     userSettings = {
       dotfiles = {
@@ -32,15 +28,7 @@
       };
     };
 
-    home.stateVersion = "24.11";
-    nixpkgs.config.allowUnfree = true;
-
-    # The home.packages option allows you to install Nix packages into your
-    # environment
     home.packages = with pkgs; [
-      # Nix management
-      nh
-
       # CLI Tools
       git
       rustup
@@ -52,61 +40,14 @@
       yazi
       delta
       codegrab
-      xclip # Needed for codegrab
 
       # GUI Apps
       kitty
       vesktop
-      showtime
       qalculate-gtk
       zoom
-      resources
-      baobab
-      neovide
       gnome-characters
-      nautilus
       xournalpp
-      qimgv
     ];
-
-    # Flatpaks
-    services.flatpak.packages = [
-      "com.github.ahrm.sioyek"
-    ];
-
-    xdg = {
-      # Change/add desktop entries
-      desktopEntries = {
-        kitty = {
-          icon = "/home/fabibo/.config/kitty/kitty.app.png";
-          name = "Kitty";
-          exec = "kitty";
-          comment = "Fast, feature-rich, GPU based terminal";
-          categories = ["System" "TerminalEmulator"];
-        };
-      };
-
-      # Set default apps for xdg-open
-      mimeApps = {
-        enable = true;
-        defaultApplications = {
-          "text/html" = "zen-beta.desktop";
-          "x-scheme-handler/http" = "zen-beta.desktop";
-          "x-scheme-handler/https" = "zen-beta.desktop";
-          "x-scheme-handler/about" = "zen-beta.desktop";
-          "x-scheme-handler/unknown" = "zen-beta.desktop";
-          "image/png" = "qimgv.desktop";
-          "image/jpeg" = "qimgv.desktop";
-          "application/pdf" = "com.github.ahrm.sioyek.desktop";
-          "text/plain" = "neovide.desktop";
-        };
-      };
-    };
-
-    # Nicely reload system units when changing configs
-    systemd.user.startServices = "sd-switch";
-
-    # Let Home Manager install and manage itself
-    programs.home-manager.enable = true;
   };
 }
