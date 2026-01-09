@@ -14,9 +14,9 @@
       remaps = lib.mkOption {
         description = "List of key remaps.";
         default = null;
-        type = lib.types.nullOr lib.types.submodule {
+        type = lib.types.nullOr (lib.types.submodule {
           freeformType = remapSettings.type;
-        };
+        });
         example = ''
           {
             modmap = [
