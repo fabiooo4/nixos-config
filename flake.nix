@@ -55,9 +55,6 @@
                   inherit userSettings;
                 };
               }
-
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.xremap-flake.nixosModules.default
             ];
           };
         })

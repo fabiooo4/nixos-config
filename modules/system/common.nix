@@ -20,6 +20,10 @@
     };
   };
 
+  imports = [
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+  ];
+
   config = let
     cfg = config.systemSettings;
     nixosConfigDir = "/home/fabibo/.config/nixconfig"; # TODO: Change to a system wide directory

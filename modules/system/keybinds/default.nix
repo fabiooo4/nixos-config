@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   options = let
@@ -51,6 +52,10 @@
       };
     };
   };
+
+  imports = [
+    inputs.xremap-flake.nixosModules.default
+  ];
 
   config = let
     cfg = config.systemSettings;
