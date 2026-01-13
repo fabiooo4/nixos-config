@@ -17,36 +17,38 @@
         type = lib.types.nullOr (lib.types.submodule {
           freeformType = remapSettings.type;
         });
-        example = {
-          modmap = [
-            {
-              name = "Global";
-              remap = {
-                CapsLock = "Esc";
-                Ctrl_L = "Esc";
-              };
-            }
-          ];
-          keymap = [
-            {
-              name = "Default (Nocturn, etc.)";
-              application = {
-                not = ["Google-chrome" "Slack" "Gnome-terminal" "jetbrains-idea"];
-              };
-              remap = {
-                # Emacs basic
-                "C-b" = "left";
-                "C-f" = "right";
-              };
-            }
-            {
-              name = "Capslock to Esc";
-              remap = {
-                "capslock" = "esc";
-              };
-            }
-          ];
-        };
+        example = ''
+          {
+            modmap = [
+              {
+                name = "Global";
+                remap = {
+                  CapsLock = "Esc";
+                  Ctrl_L = "Esc";
+                };
+              }
+            ];
+            keymap = [
+              {
+                name = "Default (Nocturn, etc.)";
+                application = {
+                  not = ["Google-chrome" "Slack" "Gnome-terminal" "jetbrains-idea"];
+                };
+                remap = {
+                  # Emacs basic
+                  "C-b" = "left";
+                  "C-f" = "right";
+                };
+              }
+              {
+                name = "Capslock to Esc";
+                remap = {
+                  "capslock" = "esc";
+                };
+              }
+            ];
+          };
+        '';
       };
     };
   };
