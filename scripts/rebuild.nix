@@ -3,7 +3,7 @@
   nixosDirectory,
 }:
 pkgs.writeShellScriptBin "rebuild" ''
-  # A rebuild script that commits on a successful build
+  # Exit on error
   set -e
 
   # cd to your config dir
@@ -26,6 +26,14 @@ pkgs.writeShellScriptBin "rebuild" ''
   # Shows your changes
   ${pkgs.git}/bin/git diff -U0 '*.nix'
 
+  # Prompt for confirmation
+  read -p "Proceed with rebuild? (Y/n): " confirm
+  if [[ "$confirm" == "n" || "$confirm" == "N" ]]; then
+      echo "Rebuild cancelled."
+      popd
+      exit 0
+  fi
+
   ${pkgs.git}/bin/git add .
 
   # echo -e "NixOS Rebuilding..."
@@ -41,11 +49,20 @@ pkgs.writeShellScriptBin "rebuild" ''
   # (echo -e "\n\nError summary:\n" && cat home-switch.log | grep --color "error\|Error" && exit 1)
   # ${pkgs.nh}/bin/nh home switch ${nixosDirectory} -c $(whoami) || exit 1
 
-  # Get current generation metadata
-  current=$(nixos-rebuild list-generations | grep True | head -c 65 | sed "s/ * /  /g")
+  # # Get current generation metadata
+  # current=$(nixos-rebuild list-generations | grep True | head -c 65 | sed "s/ * /  /g")
+  #
+  # # Commit all changes witih the generation metadata
+  # ${pkgs.git}/bin/git commit -am "$current"
 
-  # Commit all changes witih the generation metadata
-  ${pkgs.git}/bin/git commit -am "$current"
+  # Prompt to commit changes
+  read -p "Commit changes to git? (y/N): " commit_confirm
+  if [[ "$commit_confirm" == "y" || "$commit_confirm" == "Y" ]]; then
+      ${pkgs.git}/bin/git commit -v
+      echo "Changes committed."
+  else
+      echo "Changes not committed."
+  fi
 
   # Back to where you were
   popd
