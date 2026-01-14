@@ -81,11 +81,14 @@
       };
     };
 
-    # Enable the X11 windowing system with nvidia drivers
     services = {
+      # Enable the X11 windowing system with nvidia drivers
       xserver = {
         enable = true;
         videoDrivers = lib.mkIf cfg.nvidia.enable ["nvidia"];
+
+        # Enable drawing tablet drivers
+        wacom.enable = true;
       };
     };
 
