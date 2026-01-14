@@ -7,6 +7,8 @@
       nvidia.enable = true;
       flatpak.enable = true;
 
+      drawingTablet.enable = true;
+
       remaps = {
         keymap = [
           {

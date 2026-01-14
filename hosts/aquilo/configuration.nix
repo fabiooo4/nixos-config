@@ -7,6 +7,7 @@
       flatpak.enable = true;
 
       touchpad.enable = true;
+      drawingTablet.enable = true;
 
       stylix = {
         enable = true;

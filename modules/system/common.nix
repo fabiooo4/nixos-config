@@ -28,6 +28,8 @@
     cfg = config.systemSettings;
     nixosConfigDir = "/home/fabibo/.config/nixconfig"; # TODO: Change to a system wide directory
   in {
+    systemSettings.drawingTablet.enable = true;
+
     system.stateVersion = "24.11"; # Don't change
 
     # Allow unfree packages
@@ -86,9 +88,6 @@
       xserver = {
         enable = true;
         videoDrivers = lib.mkIf cfg.nvidia.enable ["nvidia"];
-
-        # Enable drawing tablet drivers
-        wacom.enable = true;
       };
     };
 

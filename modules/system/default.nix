@@ -5,7 +5,7 @@
     ./users
     ./stylix
     ./networking
-    ./keybinds
+    ./devices
     ./gnome
   ];
 }
