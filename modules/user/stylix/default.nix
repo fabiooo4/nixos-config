@@ -63,12 +63,14 @@
           serif = config.stylix.fonts.monospace;
           sansSerif = config.stylix.fonts.monospace;
         };
-        iconTheme = {
+        /*
+           iconTheme = {
           enable = true;
           package = pkgs.papirus-icon-theme;
           dark = "Papirus Dark";
           light = "Papirus Light";
         };
+        */
       };
     };
 }
