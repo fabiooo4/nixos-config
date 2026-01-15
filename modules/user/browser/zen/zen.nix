@@ -210,7 +210,7 @@
     profiles = {
       default = {
         keyboard-shortcuts = let
-          zenShortcuts = import ./zen_keybinds.nix;
+          zenShortcuts = import ./.zen_keybinds.nix;
         in {
           source = pkgs.writeText "zen-keyboard-shortcuts.json" (builtins.toJSON zenShortcuts);
         };
@@ -277,7 +277,7 @@
             "Nix Functions" = {
               urls = [
                 {
-                  template = "https://noogle.dev/";
+                  template = "https://noogle.dev/q";
                   params = [
                     {
                       name = "term";
