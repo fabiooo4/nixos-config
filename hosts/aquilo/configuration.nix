@@ -6,7 +6,11 @@
 
       flatpak.enable = true;
 
-      touchpad.enable = true;
+      touchpad = {
+        enable = true;
+        scrollDelta = 250;
+      };
+
       drawingTablet.enable = true;
 
       stylix = {

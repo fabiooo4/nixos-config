@@ -3,5 +3,6 @@
   imports = [
     ./keybinds
     ./drawingTablet
+    ./touchpad
   ];
 }

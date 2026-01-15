@@ -9,8 +9,6 @@
     remapSettings = pkgs.formats.yaml {};
   in {
     systemSettings = {
-      touchpad.enable = lib.mkEnableOption "touchpad";
-
       remaps = lib.mkOption {
         description = "List of key remaps.";
         default = null;
@@ -93,8 +91,5 @@
 
     # Configure console keymap
     console.keyMap = "us-acentos";
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = lib.mkIf cfg.touchpad.enable true;
   };
 }
