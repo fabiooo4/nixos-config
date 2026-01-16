@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  osConfig,
   ...
 }: let
   defaultSettings = {
@@ -80,7 +81,7 @@
   # Serialize the Nix set to a JSON string
   settingsJson = builtins.toJSON defaultSettings;
 in
-  lib.mkIf config.systemSettings.drawingTablet.enable {
+  lib.mkIf osConfig.systemSettings.drawingTablet.enable {
     # Write the default configuration if it doesn't exist
     home.activation.configureOpenTabletDriver = lib.hm.dag.entryAfter ["writeBoundary"] ''
       verboseEcho "Configuring OpenTabletDriver settings..."
