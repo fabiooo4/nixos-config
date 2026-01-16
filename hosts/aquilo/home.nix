@@ -1,13 +1,13 @@
 {
   pkgs,
-  inputs,
+  config,
   ...
 }: {
   config = {
     userSettings = {
       dotfiles = {
         enable = true;
-        dotfilesDir = "/home/fabibo/.dotfiles";
+        dotfilesDir = "${config.home.homeDirectory}/.dotfiles";
       };
 
       stylix = {
