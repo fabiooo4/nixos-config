@@ -11,7 +11,7 @@ To install this NixOS configuration, follow these steps:
 nix-shell -p git --command "mkdir -p .config/nixconfig && git clone https://github.com/fabiooo4/nixos-config.git ~/.config/nixconfig"
 ```
 
-2. Create a new host inside the hosts folder by copying the template. The name of the new folder should be your hostname.
+2. Create a new host inside the hosts folder by copying the template. The name of the new folder should be your desired hostname.
 ```bash
 cp -r ~/.config/nixconfig/hosts/template ~/.config/nixconfig/hosts/<your-hostname>
 ```
