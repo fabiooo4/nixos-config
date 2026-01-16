@@ -45,7 +45,7 @@
       kitty
       vesktop
       qalculate-gtk
-      zoom
+      zoom-us
       gnome-characters
       xournalpp
 
