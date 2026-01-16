@@ -40,6 +40,7 @@
       yazi
       delta
       codegrab
+      gemini-cli
 
       # GUI Apps
       kitty
