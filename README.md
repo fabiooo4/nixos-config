@@ -26,7 +26,7 @@ hosts/
 
 3. Copy the hardware-configuration.nix file to the new host folder
 ```bash
-sudo cp /etc/nixos/hardware-configuration.nix ~/.config/nixconfig/hosts/$(hostname)/hardware-configuration.nix
+sudo cp /etc/nixos/hardware-configuration.nix ~/.config/nixconfig/hosts/<your-hostname>/hardware-configuration.nix
 ```
 
 4. Edit the new host files as needed
