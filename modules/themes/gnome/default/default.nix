@@ -1,8 +1,9 @@
 {
   lib,
+  themeName,
   ...
 }: {
-  options.theme.gnome-default = {
+  options.theme.${themeName} = {
     accentColor = lib.mkOption {
       type = lib.types.str;
       default = "orange";

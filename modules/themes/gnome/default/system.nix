@@ -2,10 +2,11 @@
   lib,
   pkgs,
   config,
+  themeName,
   ...
 }: {
   config = let
-    enabled = config.theme.active == "gnome-default";
+    enabled = config.theme.active == themeName;
   in
     lib.mkIf enabled
     {
