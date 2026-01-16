@@ -14,6 +14,13 @@
 
     # Screen blank
     "org/gnome/desktop/session".idle_delay = 0;
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-timeout = 3600; # 1 hour
+      sleep-inactive-ac-type = "suspend";
+
+      sleep-inactive-battery-timeout = 1800; # 30 mins
+      sleep-inactive-battery-type = "suspend";
+    };
 
     # Multitasking
     "org/gnome/desktop/interface".enable-hot-corners = false;
