@@ -166,6 +166,15 @@
         onCalendar = "weekly";
       };
     };
+    xdg.portal = lib.mkIf cfg.flatpak.enable {
+      enable = true;
+      # It is good practice to explicitly set a config for portals
+      # This ensures applications know which portal to use
+      config.common.default = "*";
+
+      # Add a fallback portal (GTK) in case the DE doesn't provide one immediately
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    };
 
     # Enable automatic login for the user.
     # services.xserver.displayManager.autoLogin.enable = true;

@@ -46,6 +46,7 @@
               (./hosts + "/${host}")
 
               ./modules/system
+              ./modules/themes
 
               inputs.home-manager.nixosModules.home-manager
               {
