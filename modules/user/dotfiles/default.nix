@@ -4,18 +4,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ./kitty.nix
-    ./zsh.nix
-    ./latex.nix
-    ./git.nix
-    ./sioyek.nix
-    ./nvim.nix
-    ./starship.nix
-    ./rust.nix
-    ./xournalpp.nix
-  ];
-
   options = {
     userSettings.dotfiles = {
       enable = lib.mkEnableOption "Enable dotfiles symlink into .config and clone my dotfiles repo if it is not present in the home directory.";
