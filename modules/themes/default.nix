@@ -2,18 +2,31 @@
 with lib; let
   themesDir = ./.;
 
-  # Convert a path into a Theme Name
+  # Find the nearest parent with default.nix and convert a path into a Theme Name
   # Example: ./gnome/dark/default.nix -> "gnome-dark"
+  # Example: ./gnome/dark/test/test.nix -> "gnome-dark"
   pathToThemeName = filePath: let
-    # Get the directory containing the file (e.g. .../gnome/default)
-    directory = dirOf filePath;
-    pathStr = toString directory;
     rootStr = toString themesDir;
 
-    # Get path relative to themes root (e.g. gnome/default)
-    relativePath = removePrefix (rootStr + "/") pathStr;
+    findThemeRoot = currentPath:
+      if toString currentPath == rootStr
+      then
+        # Reached the root
+        currentPath
+      else if builtins.pathExists (currentPath + "/default.nix")
+      then
+        # Found the main theme config directory
+        currentPath
+      else
+        # Recurse up to the parent directory
+        findThemeRoot (dirOf currentPath);
+
+    # Get the directory of the current file to start searching
+    themeDir = findThemeRoot (dirOf filePath);
+
+    # Calculate name relative to the themes root
+    relativePath = removePrefix (rootStr + "/") (toString themeDir);
   in
-    # Replace slashes with dashes (e.g. gnome-default)
     replaceStrings ["/"] ["-"] relativePath;
 
   # Returns the list of all .nix files except this one
