@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   osConfig,
   themeName,
@@ -160,7 +161,7 @@
 
         # Burn My Windows (also has a config file below)
         "org/gnome/shell/extensions/burn-my-windows".
-      active-profile = "/home/fabio/.config/burn-my-windows/profiles/default.conf";
+        active-profile = "${config.home.homeDirectory}/.config/burn-my-windows/profiles/default.conf";
 
         # Compiz window effects
         "org/gnome/shell/extensions/com/github/hermes83/compiz-windows-effect" = {
