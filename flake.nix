@@ -14,14 +14,6 @@
 
     system = "x86_64-linux"; # system arch
 
-    # TODO: move all to modules
-    userSettings = {
-      profilePicture = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/pfp/nika.png";
-        hash = "sha256-m6NYaEL9KZ3GHPbDLUS5Qad9Oh1n60uwukdWMWlq7/o=";
-      };
-    };
-
     pkgs = import inputs.nixpkgs-unstable {
       inherit system;
       config = {
@@ -39,7 +31,6 @@
             system = system;
             specialArgs = {
               inherit inputs;
-              inherit userSettings;
             };
             modules = [
               {config.networking.hostName = host;}
@@ -53,7 +44,6 @@
                 home-manager.extraSpecialArgs = {
                   inherit pkgs;
                   inherit inputs;
-                  inherit userSettings;
                 };
               }
             ];
@@ -76,6 +66,11 @@
 
     stylix.url = "github:danth/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 

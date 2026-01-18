@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   config = {
+    theme = {
+      active = "hyprland-caelestia";
+    };
+
     systemSettings = {
       users = ["fabibo"];
       adminUsers = ["fabibo"];
