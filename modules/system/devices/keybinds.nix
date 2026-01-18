@@ -82,7 +82,7 @@
     services.xremap = {
       enable = true;
       withGnome = true;
-      mouse = true;
+      mouse = false;
       config =
         if cfg.remaps != null
         then mergeRemaps defaultRemaps cfg.remaps
