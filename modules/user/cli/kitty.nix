@@ -1,10 +1,13 @@
-{
+{...}: {}
+/*
+   {
+  lib,
   config,
   pkgs,
   ...
 }: {
   config = {
-    programs.kitty = {
+    programs.kitty = lib.mkIf (!config.userSettings.dotfiles.kitty.enable) {
       enable = true;
 
       # TODO: add colorscheme option, and stylix toggle
@@ -133,16 +136,17 @@
       categories = ["System" "TerminalEmulator"];
     };
 
-
     # Fetch utility scripts
     xdg.configFile."kitty/pass_keys.py".source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/knubie/vim-kitty-navigator/master/pass_keys.py";
-      hash = "sha256-S+6dD50O8e7YfK9tqJvbG/2Tzq+T8X2dD50O8e7YfK8=";
+      hash = "sha256-sNd1Vmg2prioRTtUx+72zfVjRnhM3cdZ9xpmrj5T6LM=";
     };
 
     xdg.configFile."kitty/get_layout.py".source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/knubie/vim-kitty-navigator/master/get_layout.py";
-      hash = "sha256-0000000000000000000000000000000000000000000=";
+      hash = "sha256-HjcFRcQ3WnBsgctb3w4Mytfld2vTOMyGmfZhyZ4RrQQ=";
     };
   };
 }
+*/
+
