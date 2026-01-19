@@ -113,9 +113,14 @@
       };
     };
 
-    # Remove default programs
+    # Disable documentations (speeds up build times)
+    documentation.doc.enable = false;
+    documentation.enable = false;
+    documentation.info.enable = false;
+    documentation.man.enable = false;
     documentation.nixos.enable = false;
-    documentation.man.enable = true;
+
+    # Remove default programs
     services.xserver.excludePackages = [pkgs.xterm];
 
     # Enable CUPS to print documents.
