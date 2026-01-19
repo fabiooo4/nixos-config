@@ -12,6 +12,12 @@
         description = "Set the path to the dotfiles directory. It will be cloned there if it does not exist.";
         type = lib.types.path;
       };
+
+      kitty.enable = lib.mkOption {
+        description = "Enable Kitty terminal emulator configuration from dotfiles.";
+        type = lib.types.bool;
+        default = true;
+      };
     };
   };
 
