@@ -1,42 +1,16 @@
 {
   config,
-  options,
   lib,
-  pkgs,
   inputs,
   osConfig,
+  themeName,
   ...
 }: {
-  options = {
-    userSettings.stylix = {
-      enable = lib.mkEnableOption "Enable stylix theming";
-      wallpaper = options.stylix.image;
-      cursor = options.stylix.cursor;
-
-      font = lib.mkOption {
-        default = null;
-        type = lib.types.nullOr (lib.types.submodule {
-          options = {
-            name = lib.mkOption {
-              description = "Name of the font.";
-              type = lib.types.str;
-            };
-
-            package = lib.mkOption {
-              description = "Package providing the font.";
-              type = lib.types.package;
-            };
-          };
-        });
-      };
-    };
-  };
-
   # Cannot import home manager module if system module has already been imported
-  imports = lib.optionals (!osConfig.stylix.enable) [inputs.stylix.homeModules.stylix];
+  imports = lib.optionals (!osConfig.theme.${themeName}.stylix.enable) [inputs.stylix.homeModules.stylix];
 
   config = let
-    cfg = config.userSettings.stylix;
+    cfg = osConfig.theme.${themeName}.stylix;
   in
     lib.mkIf cfg.enable {
       qt = {
@@ -46,7 +20,7 @@
       };
 
       stylix = {
-        enable = config.userSettings.stylix.enable;
+        enable = cfg.enable;
         targets = {
           neovim.enable = false;
           kitty.enable = false;
