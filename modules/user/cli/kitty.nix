@@ -1,6 +1,4 @@
-{...}: {}
-/*
-   {
+{
   lib,
   config,
   pkgs,
@@ -15,10 +13,10 @@
       # theme = "Gruvbox Dark Hard";
 
       # TODO: Add font option
-      font = {
+      font = lib.mkForce {
+        # Override stylix font
         name = "Monocraft";
         size = 15;
-        # Automatically install the font if you use nixpkgs
         package = pkgs.monocraft;
       };
 
@@ -148,5 +146,3 @@
     };
   };
 }
-*/
-

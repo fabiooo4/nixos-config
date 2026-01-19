@@ -23,7 +23,7 @@
         enable = cfg.enable;
         targets = {
           neovim.enable = false;
-          kitty.enable = false;
+          # kitty.enable = false;
           qt.platform = "qtct";
         };
 
