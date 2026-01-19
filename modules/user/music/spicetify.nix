@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
@@ -8,9 +9,6 @@ in {
   imports = [
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
-
-  # Disable auto stylix theming
-  stylix.targets.spicetify.enable = false;
 
   programs.spicetify = {
     enable = true;
@@ -23,7 +21,9 @@ in {
       beautifulLyrics
       playNext
     ];
-    theme = spicePkgs.themes.comfy;
+    /*
+       theme = spicePkgs.themes.comfy;
     colorScheme = "Spotify";
+    */
   };
 }
