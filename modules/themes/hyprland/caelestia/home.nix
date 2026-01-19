@@ -46,6 +46,7 @@
           exec-once = [
             "caelestia-shell -d"
           ];
+          monitor = "monitor=eDP-1,preferred,auto,${cfg.monitorScale}";
           bindi = "Super, Super_L, global, caelestia:launcher";
           bindin = [
             # "Super, catchall, global, caelestia:launcherInterrupt"
