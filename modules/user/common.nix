@@ -3,10 +3,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-  ];
-
   config = {
     # Enable fonts from pkgs list
     fonts.fontconfig.enable = true;
@@ -22,11 +18,6 @@
       nautilus # File explorer
       neovide # Text editor
       baobab # Disk usage
-    ];
-
-    # Flatpaks
-    services.flatpak.packages = [
-      "com.github.ahrm.sioyek" # pdf viewer
     ];
 
     home.stateVersion = "24.11";

@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  home.packages = [
+    pkgs.rustup
+  ];
+
   # Setup rustup
   home.activation.rustupDefaultChannel = ''
     run ${pkgs.rustup}/bin/rustup -q default stable &> /dev/null

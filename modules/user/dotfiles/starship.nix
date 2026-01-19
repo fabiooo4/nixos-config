@@ -1,4 +1,12 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
+  home.packages = [
+    pkgs.starship
+  ];
+
   # Starship
   home.file = {
     ".config/starship.toml" = {
