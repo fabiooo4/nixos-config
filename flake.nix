@@ -3,6 +3,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
+    system = "x86_64-linux";
 
     # Gets the list of hostnames from the names of all the directories inside the input path
     getHosts = hosts_path:
@@ -12,13 +13,21 @@
         then name
         else null) (builtins.readDir hosts_path));
 
-    system = "x86_64-linux"; # system arch
-
-    pkgs = import inputs.nixpkgs-unstable {
+    /*
+       pkgs = import inputs.nixpkgs-unstable {
       inherit system;
       config = {
         allowUnfree = true;
         allowUnfreePredicate = _: true;
+      };
+    };
+    */
+    # Adds unstable overlay to pkgs
+    # To access unstable packages use: pkgs.unstable.packageName
+    overlay-unstable = final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
     };
   in {
@@ -33,7 +42,9 @@
               inherit inputs;
             };
             modules = [
+              ({...}: {nixpkgs.overlays = [overlay-unstable];})
               {config.networking.hostName = host;}
+
               (./hosts + "/${host}")
 
               ./modules/system
@@ -41,8 +52,9 @@
 
               inputs.home-manager.nixosModules.home-manager
               {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {
-                  inherit pkgs;
                   inherit inputs;
                 };
               }

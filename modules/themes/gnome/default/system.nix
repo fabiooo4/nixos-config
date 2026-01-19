@@ -21,7 +21,7 @@
           gnome-tour
         ];
         extraSetup = ''
-          rm $out/share/applications/cups.desktop
+          rm -f $out/share/applications/cups.desktop
         '';
       };
     };
