@@ -8,20 +8,14 @@
       touchpad = {
         enable = lib.mkEnableOption "touchpad";
 
-        scrollDelta = lib.mkOption {
-          description = "How slow to make the touchpad scroll";
-          type = lib.types.int;
-          default = 100;
-        };
-
         sensitivity = lib.mkOption {
-          description = "Touchpad cursor speed factor. Must be between 0 and 1";
-          type = lib.types.str;
-          default = "0.6";
+          description = "Touchpad cursor speed factor. Must be between -1 and 1";
+          type = lib.types.nullOr lib.types.str;
+          default = null;
         };
 
-        acceleration = lib.mkOption {
-          description = "Wether to enable touchpad acceleration";
+        disableWhileTyping = lib.mkOption {
+          description = "Disable touchpad while typing.";
           type = lib.types.bool;
           default = true;
         };
@@ -30,20 +24,17 @@
   };
 
   config = let
-    cfg = config.systemSettings;
+    cfg = config.systemSettings.touchpad;
   in {
-    # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = lib.mkIf cfg.touchpad.enable false;
-    services.xserver.synaptics = lib.mkIf cfg.touchpad.enable {
+    services.libinput = lib.mkIf cfg.enable {
       enable = true;
-      twoFingerScroll = true;
 
-      scrollDelta = cfg.touchpad.scrollDelta;
-      minSpeed = cfg.touchpad.sensitivity;
-      accelFactor =
-        if cfg.touchpad.acceleration
-        then "0.001"
-        else "0";
+      touchpad = {
+        naturalScrolling = true;
+        accelSpeed = cfg.sensitivity;
+        disableWhileTyping = cfg.disableWhileTyping;
+        tapping = true;
+      };
     };
   };
 }

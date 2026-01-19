@@ -5,11 +5,7 @@
       adminUsers = ["fabibo"];
 
       flatpak.enable = true;
-
-      touchpad = {
-        enable = true;
-        scrollDelta = 250;
-      };
+      touchpad.enable = true;
 
       drawingTablet.enable = true;
 
