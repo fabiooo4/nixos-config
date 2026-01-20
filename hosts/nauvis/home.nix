@@ -10,6 +10,7 @@
         dotfilesDir = "${config.home.homeDirectory}/.dotfiles";
 
         kitty.enable = false;
+        starship.enable = false;
       };
     };
 

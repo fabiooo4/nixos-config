@@ -1,8 +1,10 @@
 {
+  lib,
   pkgs,
   config,
   ...
-}: {
+}:
+lib.mkIf config.userSettings.dotfiles.starship.enable {
   home.packages = [
     pkgs.starship
   ];

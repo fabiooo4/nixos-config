@@ -18,6 +18,12 @@
         type = lib.types.bool;
         default = true;
       };
+
+      starship.enable = lib.mkOption {
+        description = "Enable starship configuration from dotfiles.";
+        type = lib.types.bool;
+        default = true;
+      };
     };
   };
 
