@@ -8,6 +8,8 @@
       dotfiles = {
         enable = true;
         dotfilesDir = "${config.home.homeDirectory}/.dotfiles";
+
+        kitty.enable = false;
       };
     };
 
