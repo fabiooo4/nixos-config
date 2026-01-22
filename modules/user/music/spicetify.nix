@@ -32,8 +32,8 @@ in {
         playNext
       ];
 
-      theme = lib.mkIf cfg.stylix.enable spicePkgs.themes.comfy;
-      colorScheme = lib.mkIf cfg.stylix.enable "Spotify";
+      theme = lib.mkIf (!cfg.stylix.enable) (lib.mkForce spicePkgs.themes.comfy);
+      colorScheme = lib.mkIf (!cfg.stylix.enable) (lib.mkForce "Spotify");
     };
   };
 }
