@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   inputs,
   ...
 }: let
@@ -10,20 +11,29 @@ in {
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
-  programs.spicetify = {
-    enable = true;
-    enabledCustomApps = with spicePkgs.apps; [
-      marketplace
-    ];
-    enabledExtensions = with spicePkgs.extensions; [
-      adblockify
-      hidePodcasts
-      beautifulLyrics
-      playNext
-    ];
-    /*
-       theme = spicePkgs.themes.comfy;
-    colorScheme = "Spotify";
-    */
+  options = {
+    userSettings.music.spicetify = {
+      stylix.enable = lib.mkEnableOption "Stylix auto theming";
+    };
+  };
+
+  config = let
+    cfg = config.userSettings.music.spicetify;
+  in {
+    programs.spicetify = {
+      enable = true;
+      enabledCustomApps = with spicePkgs.apps; [
+        marketplace
+      ];
+      enabledExtensions = with spicePkgs.extensions; [
+        adblockify
+        hidePodcasts
+        beautifulLyrics
+        playNext
+      ];
+
+      theme = lib.mkIf cfg.stylix.enable spicePkgs.themes.comfy;
+      colorScheme = lib.mkIf cfg.stylix.enable "Spotify";
+    };
   };
 }
