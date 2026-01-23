@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: lib.mkIf config.userSettings.dotfiles.kitty.enable {
+}:
+lib.mkIf config.userSettings.dotfiles.kitty.enable {
   home.packages = [
     pkgs.kitty
   ];

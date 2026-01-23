@@ -14,6 +14,16 @@
     EDITOR = "nvim";
   };
 
+  xdg.desktopEntries.nvim = {
+    name = "Neovim";
+    comment = "Edit text files in Kitty";
+    icon = "nvim";
+    exec = "kitty nvim %F";
+    categories = ["Utility" "TextEditor"];
+    mimeType = ["text/plain" "text/markdown"];
+    terminal = false;
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;

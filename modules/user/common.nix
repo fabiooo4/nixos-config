@@ -16,7 +16,6 @@
       showtime # Video viewer
       qimgv # Image viewer
       nautilus # File explorer
-      neovide # Text editor
       baobab # Disk usage
     ];
 
@@ -36,7 +35,7 @@
           "image/png" = "qimgv.desktop";
           "image/jpeg" = "qimgv.desktop";
           "application/pdf" = "sioyek.desktop";
-          "text/plain" = "neovide.desktop";
+          "text/plain" = "nvim.desktop";
         };
       };
     };
