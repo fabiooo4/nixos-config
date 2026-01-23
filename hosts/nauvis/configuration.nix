@@ -3,8 +3,8 @@
     theme = {
       gnome-default = {
         stylix.wallpaper = pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-jxp6mq_1920x1080.png";
-          hash = "sha256-Gle4Nk0V8qdt/91asPVjk5NQGQDRl7Y3e1WsnedT1XM=";
+          url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-96evzk_1920x1080.png";
+          hash = "sha256-ZRcjR2t2r1RoykaslIJ3RjoxepSY9b8jZLH59b1raqw=";
         };
       };
     };
