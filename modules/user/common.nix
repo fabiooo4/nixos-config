@@ -35,7 +35,7 @@
         defaultApplications = {
           "image/png" = "qimgv.desktop";
           "image/jpeg" = "qimgv.desktop";
-          "application/pdf" = "com.github.ahrm.sioyek.desktop";
+          "application/pdf" = "sioyek.desktop";
           "text/plain" = "neovide.desktop";
         };
       };

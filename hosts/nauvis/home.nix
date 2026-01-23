@@ -11,6 +11,7 @@
 
         kitty.enable = false;
         starship.enable = false;
+        sioyek.enable = false;
       };
     };
 

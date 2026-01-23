@@ -24,6 +24,12 @@
         type = lib.types.bool;
         default = true;
       };
+
+      sioyek.enable = lib.mkOption {
+        description = "Enable Sioyek PDF viewer configuration from dotfiles.";
+        type = lib.types.bool;
+        default = true;
+      };
     };
   };
 

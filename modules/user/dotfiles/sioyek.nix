@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   ...
@@ -7,7 +8,7 @@
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
-  config = {
+  config = lib.mkIf config.userSettings.dotfiles.sioyek.enable {
     services.flatpak.packages = [
       "com.github.ahrm.sioyek"
     ];

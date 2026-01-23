@@ -3,12 +3,12 @@
   lib,
   config,
   ...
-}: {
+}: lib.mkIf config.userSettings.dotfiles.kitty.enable {
   home.packages = [
     pkgs.kitty
   ];
 
-  home.file = lib.mkIf config.userSettings.dotfiles.kitty.enable {
+  home.file = {
     ".config/kitty" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.userSettings.dotfiles.dotfilesDir}/.config/kitty";
     };

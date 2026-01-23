@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: {
-  config = {
-    programs.kitty = lib.mkIf (!config.userSettings.dotfiles.kitty.enable) {
+  config = lib.mkIf (!config.userSettings.dotfiles.kitty.enable) {
+    programs.kitty = {
       enable = true;
 
       # TODO: add colorscheme option, and stylix toggle
