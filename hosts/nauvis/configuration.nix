@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   config = {
     theme = {
+      active = "niri-noctalia";
+
       gnome-default = {
         stylix.wallpaper = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-jxp6mq_1920x1080.png";

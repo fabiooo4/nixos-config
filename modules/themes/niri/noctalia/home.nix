@@ -59,7 +59,38 @@
           ];
         };
         settings = {
+          window-rules = [
+            {
+              geometry-corner-radius = {
+                top-left = 20.0;
+                top-right = 20.0;
+                bottom-left = 20.0;
+                bottom-right = 20.0;
+              };
+              clip-to-geometry = true;
+            }
+          ];
+
+          debug = {
+            # Allows notification actions and window activation from Noctalia.
+            honor-xdg-activation-with-invalid-serial = [];
+          };
+
+          # Set overview bg to blurred wallpaper
+          layer-rules = [
+            {
+              matches = [
+                {
+                  namespace = "^noctalia-overview*";
+                }
+              ];
+              place-within-backdrop = true;
+            }
+          ];
+
           binds = with config.lib.niri.actions; {
+            "Mod+Left".action = focus-column-left;
+            "Mod+Space".action.spawn = noctalia "launcher toggle";
             "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
             "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
             "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
