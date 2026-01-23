@@ -1,5 +1,9 @@
 {...}: {
   config = {
+    theme = {
+      active = "niri-noctalia";
+    };
+
     systemSettings = {
       users = ["fabibo"];
       adminUsers = ["fabibo"];

@@ -13,15 +13,6 @@
         then name
         else null) (builtins.readDir hosts_path));
 
-    /*
-       pkgs = import inputs.nixpkgs-unstable {
-      inherit system;
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
-    */
     # Adds unstable overlay to pkgs
     # To access unstable packages use: pkgs.unstable.packageName
     overlay-unstable = final: prev: {
@@ -74,18 +65,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xremap-flake.url = "github:xremap/nix-flake";
-    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
-
+    # Utilities ------------------------------------------------------
     stylix.url = "github:danth/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    # Utilities ------------------------------------------------------
+
+    # Programs -------------------------------------------------------
+    xremap-flake.url = "github:xremap/nix-flake";
+    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -94,5 +83,21 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake/85ef44c";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
     zen-browser.inputs.home-manager.follows = "home-manager";
+    # Programs -------------------------------------------------------
+
+    # Themes ---------------------------------------------------------
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    # Themes ---------------------------------------------------------
   };
 }
