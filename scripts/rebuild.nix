@@ -89,7 +89,7 @@ pkgs.writeShellScriptBin "rebuild" ''
   # ${pkgs.git}/bin/git commit -am "$current"
 
   # Notify successful
-  ${pkgs.libnotify}/bin/notify-send -e "NixOS Rebuilt successfully" --icon=software-update-available
+  ${pkgs.libnotify}/bin/notify-send -e "NixOS Rebuilt successfully"
 
   # Prompt to commit changes
   if [ "$auto_commit" == true ]; then
