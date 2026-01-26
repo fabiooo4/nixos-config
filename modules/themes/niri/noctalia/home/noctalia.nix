@@ -530,12 +530,6 @@
           };
 
           templates = {
-            activeTemplates = [
-              {
-                id = "niri";
-                active = true;
-              }
-            ];
             enableUserTheming = true;
           };
 
