@@ -51,14 +51,6 @@
         };
       };
 
-      # Ensure the file is present
-      # home.activation.createNiriColors = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      #   path="${config.home.homeDirectory}/.config/niri/noctalia.kdl"
-      #   if [ ! -f "$path" ]; then
-      #     touch "$path"
-      #   fi
-      # '';
-
       # To see the diff of current settings and the gui modified ones run:
       # nix shell nixpkgs#jq nixpkgs#colordiff nixpkgs#wl-clipboard -c bash -c "diff -u <(jq -S . ~/.config/noctalia/settings.json) <(wl-paste | jq -S .) | colordiff"
       programs.noctalia-shell = {
@@ -585,15 +577,27 @@
 
           window-rules = [
             {
-              geometry-corner-radius = {
-                top-left = 20.0;
-                top-right = 20.0;
-                bottom-left = 20.0;
-                bottom-right = 20.0;
+              geometry-corner-radius = let
+                radius = 20.0;
+              in {
+                top-left = radius;
+                top-right = radius;
+                bottom-left = radius;
+                bottom-right = radius;
               };
               clip-to-geometry = true;
             }
           ];
+
+          layout = {
+            focus-ring = {
+              enable = true;
+              width = 4;
+            };
+          };
+
+          # Remove window decorations
+          prefer-no-csd = false;
 
           debug = {
             # Allows notification actions and window activation from Noctalia.
@@ -656,6 +660,7 @@
           override = true;
           originalFileName = "niri-flake";
           filesToInclude = ["noctalia"];
+          enableBorder = false;
 
           withOriginalConfig = dmsFiles:
             if override
@@ -663,7 +668,7 @@
             else dmsFiles ++ [originalFileName];
 
           fixes = map (fix: "\n${fix}") (
-            lib.optional true
+            lib.optional enableBorder
             # kdl
             ''
               // Border fix
