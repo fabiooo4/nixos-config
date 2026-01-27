@@ -70,6 +70,9 @@
           # Workspace ----------------------------------------
           "Mod+O".action = toggle-overview;
 
+          # TODO: Merge from options
+          "Mod+MouseForward".action = toggle-overview;
+
           "Mod+H".action = focus-column-left;
           "Mod+L".action = focus-column-right;
           "Mod+K".action = focus-workspace-up;
