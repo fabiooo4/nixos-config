@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   config = {
     programs.noctalia-shell.settings.templates.activeTemplates = [
       {
@@ -18,7 +14,7 @@
         override = true;
         originalFileName = "niri-flake";
         filesToInclude = ["noctalia"];
-        enableBorder = false;
+        fixBorder = false;
 
         withOriginalConfig = dmsFiles:
           if override
@@ -26,7 +22,7 @@
           else dmsFiles ++ [originalFileName];
 
         fixes = map (fix: "\n${fix}") (
-          lib.optional enableBorder
+          lib.optional fixBorder
           # kdl
           ''
             // Border fix
@@ -48,13 +44,5 @@
         };
       }
     );
-
-    # Ensure the included file exists
-    home.activation.createNiriColors = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      path="${config.home.homeDirectory}/.config/niri/noctalia.kdl"
-      if [ ! -f "$path" ]; then
-        touch "$path"
-      fi
-    '';
   };
 }
