@@ -26,7 +26,6 @@
       gemini-cli
 
       # GUI Apps
-      vesktop
       qalculate-gtk
       zoom-us
       gnome-characters
