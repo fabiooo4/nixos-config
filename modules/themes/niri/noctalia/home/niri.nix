@@ -43,7 +43,7 @@
         };
 
         # Remove window decorations
-        prefer-no-csd = false;
+        prefer-no-csd = true;
 
         debug = {
           # Allows notification actions and window activation from Noctalia.
