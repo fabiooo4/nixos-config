@@ -71,7 +71,7 @@
           "Mod+O".action = toggle-overview;
 
           # TODO: Merge from options
-          "Mod+MouseForward".action = toggle-overview;
+          "Ctrl+Shift+Backslash".action = toggle-overview;
 
           "Mod+H".action = focus-column-left;
           "Mod+L".action = focus-column-right;
