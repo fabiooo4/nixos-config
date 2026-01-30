@@ -3,7 +3,7 @@
     programs.noctalia-shell.settings.templates.activeTemplates = [
       {
         id = "niri";
-        active = true;
+        enabled = true;
       }
     ];
 
