@@ -39,16 +39,6 @@
         QT_QPA_PLATFORMTHEME = "gtk3";
       };
 
-      # Default wallpaper
-      home.file.".cache/noctalia/wallpapers.json" = {
-        text = builtins.toJSON {
-          defaultWallpaper = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-1k27r1_1920x1080.png";
-            hash = "sha256-o8twOuiBBa57sAECpZDM6u6OnZ9CVgbi8horSbmy/5M=";
-          };
-        };
-      };
-
       # Noctalia niri keybinds
       programs.niri.settings.binds = {
         "Mod+Space".action.spawn = noctalia "launcher toggle";
