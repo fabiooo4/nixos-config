@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   inputs,
   ...
@@ -8,15 +9,15 @@
   ];
 
   config = {
+    # X11 app support
+    home.packages = [pkgs.xwayland-satellite];
+
     programs.niri = {
       enable = true;
       settings = {
         spawn-at-startup = [
-          {
-            command = [
-              "noctalia-shell"
-            ];
-          }
+          {command = ["noctalia-shell"];}
+          {command = ["xwayland-satellite"];}
         ];
 
         window-rules = [
@@ -72,6 +73,8 @@
 
           # TODO: Merge from options
           "Ctrl+Shift+Backslash".action = toggle-overview;
+
+          "Mod+Q".action = close-window;
 
           "Mod+H".action = focus-column-left;
           "Mod+L".action = focus-column-right;
