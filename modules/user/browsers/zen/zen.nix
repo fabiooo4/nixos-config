@@ -180,6 +180,7 @@
         "github-no-more@ihatereality.space" = "github-no-more";
         "github-repository-size@pranavmangal" = "gh-repo-size";
         "@searchengineadremover" = "searchengineadremover";
+        "myallychou@gmail.com" = "unhook";
       };
       Preferences = mkLockedAttrs {
         "browser.aboutConfig.showWarning" = false;
