@@ -90,8 +90,7 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Commit for keyboard shortcuts options
-    zen-browser.url = "github:0xc000022070/zen-browser-flake/85ef44c";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
     zen-browser.inputs.home-manager.follows = "home-manager";
   };

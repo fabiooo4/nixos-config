@@ -210,11 +210,22 @@
 
     profiles = {
       default = {
-        keyboard-shortcuts = let
-          zenShortcuts = import ./.zen_keybinds.nix;
-        in {
-          source = pkgs.writeText "zen-keyboard-shortcuts.json" (builtins.toJSON zenShortcuts);
-        };
+        keyboardShortcuts = [
+          {
+            id = "key_search2";
+            key = " ";
+            modifiers = {
+              accel = true;
+            };
+          }
+          {
+            id = "key_newNavigatorTab";
+            key = "e";
+            modifiers = {
+              accel = true;
+            };
+          }
+        ];
 
         pinsForce = true;
         containersForce = true;
