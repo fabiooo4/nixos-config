@@ -210,11 +210,10 @@
           };
 
           general = {
-            avatarImage = "/home/fabibo/.face";
             dimmerOpacity = 0.2;
             showScreenCorners = false;
             forceBlackScreenCorners = false;
-            scaleRatio = 1;
+            scaleRatio = 1.15;
             radiusRatio = 1;
             iRadiusRatio = 1;
             boxRadiusRatio = 1;
@@ -533,7 +532,7 @@
             schedulingMode = "off";
             manualSunrise = "06:30";
             manualSunset = "18:30";
-            generationMethod = "tonal-spot";
+            generationMethod = "content"; # TODO: Make option
             monitorForColors = "";
           };
 
