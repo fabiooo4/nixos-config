@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   config = {
     theme = {
+      active = "niri-noctalia";
+
       gnome-default = {
         stylix.wallpaper = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/fabiooo4/wallpapers/main/wallhaven-96evzk_1920x1080.png";
@@ -17,7 +19,7 @@
       flatpak.enable = true;
 
       drawingTablet.enable = true;
-
+      /*
       remaps = {
         keymap = [
           {
@@ -28,6 +30,7 @@
           }
         ];
       };
+      */
     };
   };
 }

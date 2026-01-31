@@ -21,6 +21,8 @@
       };
 
       settings = {
+        linux_display_server = "wayland";
+
         # --- Fonts ---
         bold_font = "auto";
         italic_font = "auto";
@@ -122,7 +124,7 @@
       TERMINAL = "kitty";
 
       # TODO: termporary fix to glfw error on wayland
-      KITTY_DISABLE_WAYLAND = 1;
+      # KITTY_DISABLE_WAYLAND = 1;
     };
 
     # Change kitty image

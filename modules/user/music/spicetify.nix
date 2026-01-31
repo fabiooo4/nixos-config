@@ -33,7 +33,7 @@ in {
       ];
 
       theme = lib.mkIf (!cfg.stylix.enable) (lib.mkForce spicePkgs.themes.comfy);
-      colorScheme = lib.mkIf (!cfg.stylix.enable) (lib.mkForce "Spotify");
+      colorScheme = lib.mkDefault "Spotify";
     };
   };
 }

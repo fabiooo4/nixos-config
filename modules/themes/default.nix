@@ -51,8 +51,19 @@ with lib; let
     # Merge the theme name into the module arguments
     moduleFn ({inherit config lib pkgs;} // args // {inherit themeName;});
 
-  systemModules = filter (filePath: baseNameOf filePath != "home.nix") themeConfigs;
-  homeModules = filter (filePath: baseNameOf filePath == "home.nix") themeConfigs;
+  # A home module is any file named "home.nix" or located in a "home" directory
+  isHomeModule = filePath: let
+    pathStr = toString filePath;
+    rootDirStr = toString themesDir;
+
+    relativePath = lib.strings.removePrefix rootDirStr pathStr;
+  in
+    baseNameOf filePath
+    == "home.nix"
+    || lib.strings.hasInfix "/home/" relativePath;
+
+  systemModules = filter (filePath: !(isHomeModule filePath)) themeConfigs;
+  homeModules = filter (filePath: isHomeModule filePath) themeConfigs;
 in {
   imports = map importWithThemeName systemModules;
 

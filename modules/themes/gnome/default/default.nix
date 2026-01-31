@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   themeName,
   ...
 }: {
@@ -14,7 +15,10 @@
     stylix = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default =
+          if config.theme.active == "gnome-default"
+          then true
+          else false;
         description = "Enable stylix theming";
       };
 

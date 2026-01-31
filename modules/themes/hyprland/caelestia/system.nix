@@ -16,10 +16,9 @@
       };
 
       # Login screen
-      services.displayManager.sddm = {
+      services.displayManager.gdm = {
         enable = true;
-        wayland.enable = true;
-        # theme = "custom_theme";
+        wayland = true;
       };
 
       # Session password handler
