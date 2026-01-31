@@ -3,7 +3,7 @@
   osConfig,
   themeName,
   ...
-}: { 
+}: {
   config = let
     cfg = osConfig.theme.${themeName};
     enabled = osConfig.theme.active == themeName;
