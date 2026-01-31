@@ -34,10 +34,12 @@
           '')
       ];
 
-      /* systemd.user.sessionVariables = {
+      /*
+         systemd.user.sessionVariables = {
         # Fix for missing icons
         QT_QPA_PLATFORMTHEME = "gtk3";
-      }; */
+      };
+      */
 
       # Noctalia niri keybinds
       programs.niri.settings.binds = {
