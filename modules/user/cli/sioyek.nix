@@ -7,11 +7,7 @@
 }: {
   options = {
     userSettings.cli.sioyek = {
-      stylix.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Apply custom Sioyek styles.";
-      };
+      stylix.enable = lib.mkEnableOption "Sioyek";
     };
   };
 
