@@ -198,10 +198,13 @@
       enable = true;
       # It is good practice to explicitly set a config for portals
       # This ensures applications know which portal to use
-      config.common.default = "*";
+      config.common.default = "gnome";
 
       # Add a fallback portal (GTK) in case the DE doesn't provide one immediately
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
+      ];
     };
 
     # Enable automatic login for the user.
