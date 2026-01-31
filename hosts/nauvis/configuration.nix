@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   config = {
     theme = {
-      active = "niri-noctalia";
+      active = "gnome-default";
 
       gnome-default = {
         stylix.wallpaper = pkgs.fetchurl {

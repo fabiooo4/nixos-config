@@ -11,12 +11,6 @@ in {
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
-  options = {
-    userSettings.music.spicetify = {
-      stylix.enable = lib.mkEnableOption "Stylix auto theming";
-    };
-  };
-
   config = let
     cfg = config.userSettings.music.spicetify;
   in {
@@ -32,7 +26,7 @@ in {
         playNext
       ];
 
-      theme = lib.mkIf (!cfg.stylix.enable) (lib.mkForce spicePkgs.themes.comfy);
+      theme = lib.mkDefault spicePkgs.themes.comfy;
       colorScheme = lib.mkDefault "Spotify";
     };
   };
