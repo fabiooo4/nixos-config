@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   config = {
     theme = {
-      active = "gnome-default";
+      active = "niri-noctalia";
 
       gnome-default = {
         stylix.wallpaper = pkgs.fetchurl {
@@ -19,8 +24,9 @@
       flatpak.enable = true;
 
       drawingTablet.enable = true;
-      /*
-      remaps = {
+
+      # TODO: Move to gnome theme
+      remaps = lib.mkIf (config.theme.active == "gnome-default") {
         keymap = [
           {
             name = "Super to Logitech G2 Key G8";
@@ -30,7 +36,6 @@
           }
         ];
       };
-      */
     };
   };
 }

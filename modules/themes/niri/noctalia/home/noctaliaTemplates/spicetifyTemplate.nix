@@ -22,16 +22,8 @@
       programs.spicetify = let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
       in {
-        theme = {
-          src = lib.mkForce spicePkgs.themes.comfy;
-
-          injectCss = true;
-          injectThemeJs = true;
-          replaceColors = true;
-          overwriteAssets = true;
-        };
-
-        # colorScheme = lib.mkForce "Comfy";
+        theme = lib.mkForce spicePkgs.themes.comfy;
+        colorScheme = lib.mkForce "Comfy";
       };
     };
 }
