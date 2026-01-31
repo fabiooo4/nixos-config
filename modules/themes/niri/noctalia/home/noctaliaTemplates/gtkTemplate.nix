@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   osConfig,
   themeName,
@@ -19,6 +20,12 @@
 
       gtk = {
         enable = true;
+
+        theme = {
+          name = "adw-gtk3";
+          package = pkgs.adw-gtk3;
+        };
+
         gtk3 = {
           enable = true;
           extraCss = "@import './noctalia.css'";
