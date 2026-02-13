@@ -70,62 +70,65 @@
       programs.noctalia-shell = {
         enable = true;
         settings =
-          import ./.noctalia-defaults.nix
-          // {
+          lib.recursiveUpdate
+          (import ./.noctalia-defaults.nix)
+          {
             wallpaper = {
               overviewEnabled = true;
               directory = "${config.home.homeDirectory}/Pictures/Wallpapers"; # TODO: Check this path exists
             };
 
             # Dynamic colorscheme
+            colorSchemes = {
+              useWallpaperColors = true;
+              generationMethod = "content"; # TODO: Make option
+            };
             templates.enableUserTheming = true;
 
-            bar.widgets = {
-              right = [
-                {
-                  id = "Tray";
-                  blacklist = [];
-                  colorizeIcons = false;
-                  drawerEnabled = true;
-                  hidePassive = false;
-                  pinned = [];
-                }
-                {
-                  id = "NotificationHistory";
-                  hideWhenZero = false;
-                  hideWhenZeroUnread = false;
-                  showUnreadBadge = true;
-                }
-                {
-                  id = "Volume";
-                  displayMode = "onhover";
-                  middleClickCommand = "pwvucontrol || pavucontrol";
-                }
-                {
-                  id = "Brightness";
-                  displayMode = "onhover";
-                }
-                {
-                  id = "Battery";
-                  deviceNativePath = "BATT";
-                  displayMode = "alwaysShow";
-                  hideIfIdle = false;
-                  hideIfNotDetected = true;
-                  showNoctaliaPerformance = true;
-                  showPowerProfiles = true;
-                  warningThreshold = 30;
-                }
-                {
-                  id = "ControlCenter";
-                  colorizeDistroLogo = false;
-                  colorizeSystemIcon = "none";
-                  customIconPath = "";
-                  enableColorization = false;
-                  icon = "noctalia";
-                  useDistroLogo = false;
-                }
-              ];
-            };
+            bar.widgets.right = [
+              {
+                id = "Tray";
+                blacklist = [];
+                colorizeIcons = false;
+                drawerEnabled = true;
+                hidePassive = false;
+                pinned = [];
+              }
+              {
+                id = "NotificationHistory";
+                hideWhenZero = false;
+                hideWhenZeroUnread = false;
+                showUnreadBadge = true;
+              }
+              {
+                id = "Volume";
+                displayMode = "onhover";
+                middleClickCommand = "pwvucontrol || pavucontrol";
+              }
+              {
+                id = "Brightness";
+                displayMode = "onhover";
+              }
+              {
+                id = "Battery";
+                deviceNativePath = "BATT";
+                displayMode = "alwaysShow";
+                hideIfIdle = false;
+                hideIfNotDetected = true;
+                showNoctaliaPerformance = true;
+                showPowerProfiles = true;
+                warningThreshold = 30;
+              }
+              {
+                id = "ControlCenter";
+                colorizeDistroLogo = false;
+                colorizeSystemIcon = "none";
+                customIconPath = "";
+                enableColorization = false;
+                icon = "noctalia";
+                useDistroLogo = false;
+              }
+            ];
           };
       };
     };

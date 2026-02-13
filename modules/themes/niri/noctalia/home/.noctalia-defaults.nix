@@ -182,7 +182,7 @@
   };
 
   location = {
-    name = "Tokyo";
+    name = "Italy";
     weatherEnabled = true;
     weatherShowEffects = true;
     useFahrenheit = false;
@@ -454,13 +454,13 @@
   };
 
   colorSchemes = {
-    useWallpaperColors = true;
+    useWallpaperColors = false;
     predefinedScheme = "Noctalia (default)";
     darkMode = true;
     schedulingMode = "off";
     manualSunrise = "06:30";
     manualSunset = "18:30";
-    generationMethod = "content"; # TODO: Make option
+    generationMethod = "tonal-spot"; # TODO: Make option
     monitorForColors = "";
   };
 
