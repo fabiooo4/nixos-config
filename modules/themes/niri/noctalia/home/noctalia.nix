@@ -78,6 +78,16 @@
               directory = "${config.home.homeDirectory}/Pictures/Wallpapers"; # TODO: Check this path exists
             };
 
+            general = {
+              scaleRatio = cfg.interface.scaling;
+              animationSpeed = 1.5;
+              shadowDirection = "bottom";
+            };
+
+            systemMonitor = {
+              panelBackgroundOpacity = 1;
+            };
+
             # Dynamic colorscheme
             colorSchemes = {
               useWallpaperColors = true;
