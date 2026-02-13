@@ -86,6 +86,7 @@
 
             systemMonitor = {
               panelBackgroundOpacity = 1;
+              hideWallpaperFilenames = true;
             };
 
             # Dynamic colorscheme
