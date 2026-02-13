@@ -9,6 +9,8 @@
     remapSettings = pkgs.formats.yaml {};
   in {
     systemSettings = {
+      # Use the following command to find keycodes
+      # sudo RUST_LOG=debug xremap config.yml
       remaps = lib.mkOption {
         description = "List of key remaps.";
         default = null;

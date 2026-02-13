@@ -74,6 +74,7 @@
             mod-key = "Super";
           };
 
+          # Use wev to find keycodes
           binds = with config.lib.niri.actions; {
             # Workspace ----------------------------------------
             "Mod+O".action = toggle-overview;
