@@ -157,7 +157,7 @@
     shadowDirection = "bottom_right";
     shadowOffsetX = 2;
     shadowOffsetY = 3;
-    language = "";
+    language = "en";
     allowPanelsOnScreenWithoutBar = true;
     showChangelogOnStartup = true;
     telemetryEnabled = false;
