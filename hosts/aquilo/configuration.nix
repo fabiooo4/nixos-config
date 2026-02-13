@@ -13,5 +13,8 @@
 
       drawingTablet.enable = true;
     };
+
+    # Enable battery management
+    services.upower.enable = true;
   };
 }
