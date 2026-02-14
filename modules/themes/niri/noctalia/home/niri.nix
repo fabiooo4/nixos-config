@@ -137,6 +137,9 @@
             "Mod+BracketRight".action = switch-preset-column-width;
             "Mod+BracketLeft".action = switch-preset-column-width-back;
 
+            "Mod+Shift+BracketRight".action = switch-preset-window-height;
+            "Mod+Shift+BracketLeft".action = switch-preset-window-height-back;
+
             "Mod+Z".action = toggle-column-tabbed-display;
 
             "Mod+F".action = toggle-window-floating;
