@@ -195,6 +195,49 @@
             };
 
             dock.enabled = false;
+
+            controlCenter = {
+              shortcuts = {
+                left = [
+                  {id = "Network";}
+                  {id = "Bluetooth";}
+                  {id = "WallpaperSelector";}
+                  {id = "Notifications";}
+                ];
+                right = [
+                  {id = "NoctaliaPerformance";}
+                  {id = "PowerProfile";}
+                  {id = "KeepAwake";}
+                  {id = "NightLight";}
+                ];
+              };
+              cards = [
+                {
+                  id = "profile-card";
+                  enabled = true;
+                }
+                {
+                  id = "shortcuts-card";
+                  enabled = true;
+                }
+                {
+                  id = "media-sysmon-card";
+                  enabled = true;
+                }
+                {
+                  id = "weather-card";
+                  enabled = true;
+                }
+                {
+                  id = "audio-card";
+                  enabled = false;
+                }
+                {
+                  id = "brightness-card";
+                  enabled = false;
+                }
+              ];
+            };
           };
       };
     };
