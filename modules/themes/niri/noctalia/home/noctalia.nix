@@ -106,7 +106,7 @@
                   {
                     id = "Battery";
                     deviceNativePath = "BATT";
-                    displayMode = "onHover";
+                    displayMode = "onhover";
                     hideIfIdle = false;
                     hideIfNotDetected = true;
                     showNoctaliaPerformance = true;
@@ -193,6 +193,8 @@
                 ];
               };
             };
+
+            dock.enabled = false;
           };
       };
     };
