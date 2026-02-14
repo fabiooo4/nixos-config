@@ -2,6 +2,10 @@
   config = {
     theme = {
       active = "niri-noctalia";
+
+      niri-noctalia = {
+        bar.density = "comfortable";
+      };
     };
 
     systemSettings = {

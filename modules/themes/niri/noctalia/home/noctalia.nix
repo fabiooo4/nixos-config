@@ -101,51 +101,97 @@
               density = cfg.bar.density;
               position = "left";
               showCapsule = false;
-
-              widgets.right = [
-                {
-                  id = "Tray";
-                  blacklist = [];
-                  colorizeIcons = false;
-                  drawerEnabled = true;
-                  hidePassive = false;
-                  pinned = [];
-                }
-                {
-                  id = "NotificationHistory";
-                  hideWhenZero = false;
-                  hideWhenZeroUnread = false;
-                  showUnreadBadge = true;
-                }
-                {
-                  id = "Volume";
-                  displayMode = "onhover";
-                  middleClickCommand = "pwvucontrol || pavucontrol";
-                }
-                {
-                  id = "Brightness";
-                  displayMode = "onhover";
-                }
-                {
-                  id = "Battery";
-                  deviceNativePath = "BATT";
-                  displayMode = "alwaysShow";
-                  hideIfIdle = false;
-                  hideIfNotDetected = true;
-                  showNoctaliaPerformance = true;
-                  showPowerProfiles = true;
-                  warningThreshold = 30;
-                }
-                {
-                  id = "ControlCenter";
-                  colorizeDistroLogo = false;
-                  colorizeSystemIcon = "none";
-                  customIconPath = "";
-                  enableColorization = false;
-                  icon = "noctalia";
-                  useDistroLogo = false;
-                }
-              ];
+              widgets = {
+                left = [
+                  {
+                    id = "Battery";
+                    deviceNativePath = "BATT";
+                    displayMode = "onHover";
+                    hideIfIdle = false;
+                    hideIfNotDetected = true;
+                    showNoctaliaPerformance = true;
+                    showPowerProfiles = true;
+                    warningThreshold = 30;
+                  }
+                  {
+                    id = "Clock";
+                    customFont = "";
+                    formatHorizontal = "HH:mm ddd, MMM dd";
+                    formatVertical = "HH mm — dd MM";
+                    tooltipFormat = "HH:mm ddd, MMM dd";
+                    useCustomFont = false;
+                    usePrimaryColor = false;
+                  }
+                  {
+                    id = "MediaMini";
+                    compactMode = false;
+                    compactShowAlbumArt = true;
+                    compactShowVisualizer = false;
+                    hideMode = "hidden";
+                    hideWhenIdle = false;
+                    maxWidth = 145;
+                    panelShowAlbumArt = true;
+                    panelShowVisualizer = true;
+                    scrollingMode = "hover";
+                    showAlbumArt = true;
+                    showArtistFirst = true;
+                    showProgressRing = true;
+                    showVisualizer = false;
+                    useFixedWidth = false;
+                    visualizerType = "linear";
+                  }
+                ];
+                center = [
+                  {
+                    id = "Workspace";
+                    characterCount = 2;
+                    colorizeIcons = false;
+                    enableScrollWheel = true;
+                    followFocusedScreen = false;
+                    groupedBorderOpacity = 1;
+                    hideUnoccupied = false;
+                    iconScale = 0.8;
+                    labelMode = "index";
+                    showApplications = false;
+                    showLabelsOnlyWhenOccupied = true;
+                    unfocusedIconsOpacity = 1;
+                  }
+                ];
+                right = [
+                  {
+                    id = "Tray";
+                    blacklist = [];
+                    colorizeIcons = false;
+                    drawerEnabled = true;
+                    hidePassive = false;
+                    pinned = [];
+                  }
+                  {
+                    id = "NotificationHistory";
+                    hideWhenZero = false;
+                    hideWhenZeroUnread = false;
+                    showUnreadBadge = true;
+                  }
+                  {
+                    id = "Volume";
+                    displayMode = "onhover";
+                    middleClickCommand = "pwvucontrol || pavucontrol";
+                  }
+                  {
+                    id = "Brightness";
+                    displayMode = "onhover";
+                  }
+                  {
+                    id = "ControlCenter";
+                    colorizeDistroLogo = false;
+                    colorizeSystemIcon = "primary";
+                    customIconPath = "";
+                    enableColorization = true;
+                    icon = "noctalia";
+                    useDistroLogo = true;
+                  }
+                ];
+              };
             };
           };
       };
