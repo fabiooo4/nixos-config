@@ -71,6 +71,9 @@
       };
 
       keybindings = {
+        # --- Refresh / Reset ---
+        "kitty_mod+f5" = "load_config_file";
+
         # --- Clipboard ---
         "ctrl+shift+c" = "copy_to_clipboard";
         "ctrl+shift+v" = "paste_from_clipboard";
