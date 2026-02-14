@@ -117,6 +117,7 @@
             "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
 
             "Mod+Return".action = maximize-column;
+            "Mod+Shift+Return".action = reset-window-height;
             "Mod+Ctrl+Return".action = fullscreen-window;
             # Not yet implemented in the flake
             # Activate when this is closed: https://github.com/sodiboo/niri-flake/issues/1493
