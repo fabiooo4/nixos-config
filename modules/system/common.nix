@@ -171,8 +171,14 @@
         inherit pkgs;
         nixosDirectory = nixosConfigDir;
       };
+
+      benchmark-script = import ../../scripts/benchmark.nix {
+        inherit pkgs;
+        nixosDirectory = nixosConfigDir;
+      };
     in [
       rebuild-script
+      benchmark-script
     ];
 
     environment.variables = {
