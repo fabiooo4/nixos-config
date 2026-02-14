@@ -23,7 +23,7 @@
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
       in {
         theme = lib.mkForce spicePkgs.themes.comfy;
-        colorScheme = lib.mkForce "Comfy";
+        # colorScheme = lib.mkForce "Comfy"; TODO: Fix whole template
       };
     };
 }
