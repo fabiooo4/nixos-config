@@ -30,7 +30,7 @@
         (pkgs.writeShellScriptBin
           "noctalia-diff"
           ''
-            ${pkgs.delta}/bin/delta <(${pkgs.jq}/bin/jq -S . ${config.home.homeDirectory}/.config/noctalia/settings.json) <(${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.jq}/bin/jq -S .)
+            diff -u -U 100000 <(${pkgs.jq}/bin/jq -S . ${config.home.homeDirectory}/.config/noctalia/settings.json) <(${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.jq}/bin/jq -S .) | ${pkgs.delta}/bin/delta
           '')
       ];
 
@@ -254,6 +254,8 @@
                 critical = true;
               };
             };
+
+            osd.autoHideMs = 1000;
           };
       };
     };
