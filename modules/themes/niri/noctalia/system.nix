@@ -17,5 +17,8 @@
       programs.niri = {
         enable = true;
       };
+
+      # Enable calendar events
+      services.gnome.evolution-data-server.enable = true;
     };
 }

@@ -26,12 +26,14 @@
   in
     lib.mkIf enabled
     {
-      home.packages = [
+      home.packages = with pkgs; [
         (pkgs.writeShellScriptBin
           "noctalia-diff"
           ''
             diff -u -U 100000 <(${pkgs.jq}/bin/jq -S . ${config.home.homeDirectory}/.config/noctalia/settings.json) <(${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.jq}/bin/jq -S .) | ${pkgs.delta}/bin/delta
           '')
+        gnome-control-center
+        gnome-online-accounts
       ];
 
       systemd.user.sessionVariables = {
@@ -69,6 +71,12 @@
       # nix shell nixpkgs#jq nixpkgs#colordiff nixpkgs#wl-clipboard -c bash -c "diff -u <(jq -S . ~/.config/noctalia/settings.json) <(wl-paste | jq -S .) | colordiff"
       programs.noctalia-shell = {
         enable = true;
+
+        # Activate calendar support
+        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+          calendarSupport = true;
+        };
+
         settings =
           lib.recursiveUpdate
           (import ./.noctalia-defaults.nix)

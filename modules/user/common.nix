@@ -17,6 +17,7 @@
       qimgv # Image viewer
       nautilus # File explorer
       baobab # Disk usage
+      gnome-calendar
     ];
 
     home.stateVersion = "24.11";
