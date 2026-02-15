@@ -238,6 +238,12 @@
                 }
               ];
             };
+
+            appLauncher = {
+              enableClipboardHistory = true;
+              terminalCommand = "kitty -e";
+              viewMode = "grid";
+            };
           };
       };
     };
