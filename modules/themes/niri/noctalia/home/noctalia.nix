@@ -295,6 +295,7 @@
             };
 
             location = {
+              name = "Milan";
               showWeekNumberInCalendar = true;
               analogClockInCalendar = true;
               firstDayOfWeek = 1;
