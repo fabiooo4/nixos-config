@@ -375,26 +375,38 @@
       {
         action = "lock";
         enabled = true;
+        command = "";
+        countdownEnabled = true;
       }
       {
         action = "suspend";
         enabled = true;
+        command = "";
+        countdownEnabled = true;
       }
       {
         action = "hibernate";
         enabled = true;
+        command = "";
+        countdownEnabled = true;
       }
       {
         action = "reboot";
         enabled = true;
+        command = "";
+        countdownEnabled = true;
       }
       {
         action = "logout";
         enabled = true;
+        command = "";
+        countdownEnabled = true;
       }
       {
         action = "shutdown";
         enabled = true;
+        command = "";
+        countdownEnabled = true;
       }
     ];
   };

@@ -293,6 +293,14 @@
               cavaFrameRate = 60;
               volumeFeedback = true;
             };
+
+            location = {
+              showWeekNumberInCalendar = true;
+              analogClockInCalendar = true;
+              firstDayOfWeek = 1;
+              hideWeatherTimezone = true;
+              hideWeatherCityName = true;
+            };
           };
       };
     };

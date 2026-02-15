@@ -14,7 +14,7 @@
 
     bar = {
       density = lib.mkOption {
-        type = lib.types.enum [ "mini" "compact" "default" "comfortable" "spacious" ];
+        type = lib.types.enum ["mini" "compact" "default" "comfortable" "spacious"];
         default = "default";
         description = "Bar density";
       };
