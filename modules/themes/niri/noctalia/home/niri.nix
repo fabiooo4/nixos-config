@@ -38,7 +38,6 @@
                 bottom-right = radius;
               };
               clip-to-geometry = true;
-              open-maximized = true;
             }
           ];
 
