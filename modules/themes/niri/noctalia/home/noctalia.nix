@@ -244,6 +244,16 @@
               terminalCommand = "kitty -e";
               viewMode = "grid";
             };
+
+            notifications = {
+              enabled = true;
+              lowUrgencyDuration = 2;
+              saveToHistory = {
+                low = false;
+                normal = true;
+                critical = true;
+              };
+            };
           };
       };
     };
