@@ -288,6 +288,11 @@
                 }
               ];
             };
+
+            audio = {
+              cavaFrameRate = 60;
+              volumeFeedback = true;
+            };
           };
       };
     };
