@@ -83,6 +83,8 @@
               scaleRatio = cfg.interface.scaling;
               animationSpeed = 1.5;
               shadowDirection = "bottom";
+
+              compactLockScreen = true;
             };
 
             ui = {
