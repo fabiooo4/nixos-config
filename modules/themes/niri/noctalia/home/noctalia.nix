@@ -258,6 +258,36 @@
             };
 
             osd.autoHideMs = 1000;
+
+            sessionMenu = {
+              largeButtonsStyle = true;
+              powerOptions = [
+                {
+                  action = "shutdown";
+                  enabled = true;
+                }
+                {
+                  action = "reboot";
+                  enabled = true;
+                }
+                {
+                  action = "suspend";
+                  enabled = true;
+                }
+                {
+                  action = "lock";
+                  enabled = true;
+                }
+                {
+                  action = "hibernate";
+                  enabled = true;
+                }
+                {
+                  action = "logout";
+                  enabled = true;
+                }
+              ];
+            };
           };
       };
     };
