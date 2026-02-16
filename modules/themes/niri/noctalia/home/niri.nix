@@ -19,6 +19,16 @@
       # X11 app support
       home.packages = [pkgs.xwayland-satellite];
 
+      # Cursor theme
+      # TODO: Make option
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        name = "XCursor-Pro-Dark";
+        package = pkgs.xcursor-pro;
+        size = 24;
+      };
+
       programs.niri = {
         enable = true;
         settings = {
