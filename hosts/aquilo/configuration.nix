@@ -17,6 +17,10 @@
 
       drawingTablet.enable = true;
 
+      networking = {
+        bluetooth.enable = true;
+      };
+
       remaps = {
         modmap = [
           {

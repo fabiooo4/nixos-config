@@ -5,7 +5,10 @@
 }: {
   options = {
     systemSettings = {
-      networking.wireless.enable = lib.mkEnableOption "wireless networking";
+      networking = {
+        # wifi.enable = lib.mkEnableOption "wifi";
+        bluetooth.enable = lib.mkEnableOption "bluetooth";
+      };
     };
   };
 
@@ -16,7 +19,7 @@
       # Enable networking
       networkmanager.enable = true;
 
-      wireless.enable = lib.mkIf cfg.networking.wireless.enable true;
+      # wireless.enable = lib.mkIf cfg.networking.wifi.enable true;
 
       # Configure network proxy if necessary
       # proxy = {
@@ -24,5 +27,7 @@
       #    noProxy = "127.0.0.1,localhost,internal.domain";
       # };
     };
+
+    hardware.bluetooth.enable = cfg.networking.bluetooth.enable;
   };
 }
