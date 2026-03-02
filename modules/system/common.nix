@@ -64,6 +64,9 @@
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
 
+    # Increase file descriptor limit
+    systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
+
     # Change default shell to zsh
     programs.zsh.enable = true;
     users.defaultUserShell = pkgs.zsh;
