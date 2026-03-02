@@ -32,6 +32,8 @@
       imagemagick
 
       # Neovim plugin dependencies
+      gcc
+      tree-sitter
       lua51Packages.lua
       luajitPackages.luarocks
       stylua
