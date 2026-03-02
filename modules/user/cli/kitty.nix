@@ -125,9 +125,6 @@
 
     systemd.user.sessionVariables = {
       TERMINAL = "kitty";
-
-      # TODO: termporary fix to glfw error on wayland
-      # KITTY_DISABLE_WAYLAND = 1;
     };
 
     # Change kitty image
