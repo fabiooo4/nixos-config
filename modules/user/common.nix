@@ -12,6 +12,7 @@
       nh
 
       xclip
+      fastfetch
       resources
       showtime # Video viewer
       qimgv # Image viewer
