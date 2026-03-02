@@ -251,6 +251,9 @@
 
             appLauncher = {
               enableClipboardHistory = true;
+              enableSettingsSearch = false;
+              enableWindowsSearch = false;
+              overviewLayer = true;
               terminalCommand = "kitty -e";
               viewMode = "grid";
             };
