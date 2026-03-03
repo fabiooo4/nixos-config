@@ -21,6 +21,8 @@
         config.allowUnfree = true;
       };
     };
+
+    overlay-custom = import ./modules/customPackages/default.nix;
   in {
     # For each host create a nixosSystem importing the default.nix file in that host directory
     nixosConfigurations =
