@@ -132,6 +132,15 @@
                     useCustomFont = false;
                     usePrimaryColor = false;
                   }
+
+                  (
+                    if config.programs.noctalia-shell.plugins.states.weekly-calendar.enabled
+                    then {
+                      id = "plugin:weekly-calendar";
+                    }
+                    else {}
+                  )
+
                   {
                     id = "MediaMini";
                     compactMode = false;
