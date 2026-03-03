@@ -33,6 +33,8 @@
 
       # Fonts
       monocraft
+
+      custom-pkgs.remote-touchpad
     ];
   };
 }

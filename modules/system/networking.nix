@@ -19,6 +19,9 @@
       # Enable networking
       networkmanager.enable = true;
 
+      # remote-touchpad
+      firewall.allowedTCPPorts = [43877];
+
       # wireless.enable = lib.mkIf cfg.networking.wifi.enable true;
 
       # Configure network proxy if necessary
