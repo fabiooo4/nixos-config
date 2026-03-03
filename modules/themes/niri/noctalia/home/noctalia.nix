@@ -314,6 +314,24 @@
               hideWeatherCityName = true;
             };
           };
+
+        plugins = {
+          version = 2;
+          sources = [
+            {
+              enabled = true;
+              name = "Official Noctalia Plugins";
+              url = "https://github.com/noctalia-dev/noctalia-plugins";
+            }
+          ];
+        };
+
+        pluginSettings = {
+          catwalk = {
+            minimumThreshold = 25;
+            hideBackground = true;
+          };
+        };
       };
     };
 }
