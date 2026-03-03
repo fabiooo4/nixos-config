@@ -35,7 +35,12 @@
               inherit inputs;
             };
             modules = [
-              ({...}: {nixpkgs.overlays = [overlay-unstable];})
+              ({...}: {
+                nixpkgs.overlays = [
+                  overlay-unstable
+                  overlay-custom
+                ];
+              })
               {config.networking.hostName = host;}
 
               (./hosts + "/${host}")
