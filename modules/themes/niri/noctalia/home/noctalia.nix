@@ -26,14 +26,23 @@
   in
     lib.mkIf enabled
     {
-      home.packages = with pkgs; [
+      home.packages = [
         (pkgs.writeShellScriptBin
           "noctalia-diff"
           ''
             diff -u -U 100000 <(${pkgs.jq}/bin/jq -S . ${config.home.homeDirectory}/.config/noctalia/settings.json) <(${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.jq}/bin/jq -S .) | ${pkgs.delta}/bin/delta
           '')
-        gnome-control-center
-        gnome-online-accounts
+
+        # Wrapped gnome-control-center
+        (pkgs.symlinkJoin {
+          name = "gnome-control-center-wrapped";
+          paths = [pkgs.gnome-control-center];
+          buildInputs = [pkgs.makeWrapper];
+          postBuild = ''
+            wrapProgram $out/bin/gnome-control-center \
+              --set XDG_CURRENT_DESKTOP GNOME
+          '';
+        })
       ];
 
       systemd.user.sessionVariables = {

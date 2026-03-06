@@ -20,5 +20,9 @@
 
       # Enable calendar events
       services.gnome.evolution-data-server.enable = true;
+
+      # Calendar accounts setup
+      services.gnome.gnome-online-accounts.enable = true;
+      services.gnome.gnome-keyring.enable = true;
     };
 }
