@@ -71,6 +71,7 @@
       ripgrep
       gcc
       nodejs
+      yarn
       xclip
       fd
       unzip
