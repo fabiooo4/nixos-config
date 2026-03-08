@@ -27,11 +27,37 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+
+    extraWrapperArgs = [
+      "--prefix"
+      "LD_LIBRARY_PATH"
+      ":"
+      "${pkgs.lib.makeLibraryPath [pkgs.icu]}"
+    ];
+
     extraLuaPackages = ps: [ps.magick];
+
     extraPackages = with pkgs; [
-      imagemagick
+      # LSP
+      clang-tools
+      lua-language-server
+      vscode-langservers-extracted
+      marksman
+      glsl_analyzer
+      svelte-language-server
+      tailwindcss-language-server
+      typescript-language-server
+      (python3.withPackages (
+        ps:
+          with ps; [
+            jedi-language-server
+          ]
+      ))
+      matlab-language-server
+      nil
 
       # Neovim plugin dependencies
+      imagemagick
       gcc
       tree-sitter
       lua51Packages.lua
@@ -41,6 +67,7 @@
       nil
       alejandra
       nodePackages.prettier
+      black
       ripgrep
       gcc
       nodejs
