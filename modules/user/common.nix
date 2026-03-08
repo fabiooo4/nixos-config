@@ -10,6 +10,7 @@
     home.packages = with pkgs; [
       # Nix management
       nh
+      nix-output-monitor
 
       xclip
       fastfetch
