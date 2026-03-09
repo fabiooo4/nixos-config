@@ -32,6 +32,10 @@
       programs.niri = {
         enable = true;
         settings = {
+          environment = {
+            SHLVL = "0";
+          };
+
           spawn-at-startup = [
             {command = ["noctalia-shell"];}
             {command = ["xwayland-satellite"];}
