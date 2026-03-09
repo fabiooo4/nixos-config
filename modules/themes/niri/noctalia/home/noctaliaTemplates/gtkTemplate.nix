@@ -26,11 +26,11 @@
           package = pkgs.adw-gtk3;
         };
 
-        gtk3 = {
-          enable = true;
-          extraCss = "@import './noctalia.css'";
-          colorScheme = "dark";
-        };
+        # gtk3 = {
+        #   enable = true;
+        #   extraCss = "@import './noctalia.css'";
+        #   colorScheme = "dark";
+        # };
         gtk4 = {
           enable = true;
           extraCss = "@import './noctalia.css'";
