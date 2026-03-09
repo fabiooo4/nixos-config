@@ -1,6 +1,8 @@
 {
   pkgs,
+  lib,
   config,
+  osConfig,
   ...
 }: {
   config = {
@@ -30,6 +32,12 @@
       qalculate-gtk
       zoom-us
       gnome-characters
+
+      (
+        lib.mkIf
+        osConfig.systemSettings.rgb.enable
+        openrgb
+      )
 
       # Fonts
       monocraft

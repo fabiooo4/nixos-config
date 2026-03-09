@@ -28,6 +28,7 @@
       flatpak.enable = true;
 
       drawingTablet.enable = true;
+      rgb.enable = true;
 
       # TODO: Move to gnome theme
       remaps = lib.mkIf (config.theme.active == "gnome-default") {
