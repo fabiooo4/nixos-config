@@ -101,7 +101,7 @@
 
           git_status = {
             style = "color_orange bold";
-            format = "([ \\\[$all_status\\\]]($style))";
+            format = "([ \\\[$all_status$ahead_behind\\\]]($style))";
             conflicted = "✖";
             ahead = "⇡";
             behind = "⇣";
