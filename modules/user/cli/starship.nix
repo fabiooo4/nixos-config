@@ -67,9 +67,9 @@
           ];
 
           character = {
-            success_symbol = "[\\$](color_fg0)";
-            error_symbol = "[\\$](color_red)";
-            vimcmd_symbol = "[\\$](color_green)";
+            success_symbol = "[ \\$](color_fg0)";
+            error_symbol = "[ \\$](color_red)";
+            vimcmd_symbol = "[ \\$](color_green)";
           };
 
           directory = {
@@ -96,11 +96,12 @@
 
           git_branch = {
             style = "color_aqua bold";
-            format = "[ $symbol$branch ]($style)";
+            format = "[ $symbol$branch]($style)";
           };
 
           git_status = {
             style = "color_orange bold";
+            format = "([ \\\[$all_status\\\]]($style))";
             conflicted = "✖";
             ahead = "⇡";
             behind = "⇣";
@@ -112,7 +113,7 @@
             disabled = false;
             style = "color_blue";
             symbol = "";
-            format = "[$symbol $shlvl ]($style)";
+            format = "[ $symbol $shlvl]($style)";
           };
         };
       };
