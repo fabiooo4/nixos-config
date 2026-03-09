@@ -13,7 +13,7 @@
       programs.noctalia-shell.settings.templates.activeTemplates = [
         {
           id = "zenBrowser";
-          active = true;
+          enabled = true;
         }
       ];
 

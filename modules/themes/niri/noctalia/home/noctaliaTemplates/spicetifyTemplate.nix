@@ -15,7 +15,7 @@
       programs.noctalia-shell.settings.templates.activeTemplates = [
         {
           id = "spicetify";
-          active = true;
+          enabled = true;
         }
       ];
 
