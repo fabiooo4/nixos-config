@@ -5,10 +5,6 @@
   ...
 }: {
   config = {
-    # Suppress: 'You have set either `nixpkgs.config` or `nixpkgs.overlays` while using `home-manager.useGlobalPkgs`.'
-    nixpkgs.config = lib.mkForce {};
-    nixpkgs.overlays = lib.mkForce null;
-
     # Enable fonts from pkgs list
     fonts.fontconfig.enable = true;
 
