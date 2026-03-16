@@ -79,7 +79,6 @@
       tree-sitter
       texliveFull
       gnumake
-      rustup
       python3
       # --------------
     ];
