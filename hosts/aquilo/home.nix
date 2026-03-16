@@ -31,9 +31,6 @@
       zoom-us
       gnome-characters
 
-      # Fonts
-      monocraft
-
       custom-pkgs.remote-touchpad
     ];
   };

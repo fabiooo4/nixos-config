@@ -38,9 +38,6 @@
         osConfig.systemSettings.rgb.enable
         openrgb
       )
-
-      # Fonts
-      monocraft
     ];
   };
 }

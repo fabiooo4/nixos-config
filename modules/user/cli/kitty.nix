@@ -14,10 +14,9 @@
 
       # TODO: Add font option
       font = lib.mkForce {
-        # Override stylix font
-        name = "Monocraft";
+        name = "Space Mono";
         size = 15;
-        package = pkgs.monocraft;
+        package = pkgs.nerd-fonts.space-mono;
       };
 
       settings = {
