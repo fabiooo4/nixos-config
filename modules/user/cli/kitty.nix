@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  osConfig,
   ...
 }: {
   config = lib.mkIf (!config.userSettings.dotfiles.kitty.enable) {
@@ -46,8 +47,8 @@
         # --- Window Layout ---
         enabled_layouts = "splits:split_axis=horizontal, stack";
         window_border_width = "0.5pt";
-        active_border_color = "#D65D0E";
-        inactive_border_color = "#D65D0E";
+        active_border_color = lib.mkIf (osConfig.theme.active != "niri-noctalia") "#D65D0E";
+        inactive_border_color = lib.mkIf (osConfig.theme.active != "niri-noctalia") "#D65D0E";
         hide_window_decorations = "yes";
 
         # --- Tab Bar ---

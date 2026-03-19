@@ -17,7 +17,7 @@
         }
       ];
 
-      programs.kitty.extraConfig = ''
+      programs.kitty.extraConfig = lib.mkBefore ''
         include themes/noctalia.conf
       '';
     };
