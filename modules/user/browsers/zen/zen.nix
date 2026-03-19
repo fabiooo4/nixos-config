@@ -172,6 +172,8 @@
         FormData = true;
         Cache = true;
       };
+      # Find extensions using:
+      # curl -s https://addons.mozilla.org/api/v5/addons/addon/<extensionName>/ | grep -o '"guid":"[^"]*"'
       ExtensionSettings = mkExtensionSettings {
         "uBlock0@raymondhill.net" = "ublock-origin";
         "addon@darkreader.org" = "darkreader";
@@ -181,6 +183,7 @@
         "github-repository-size@pranavmangal" = "gh-repo-size";
         "@searchengineadremover" = "searchengineadremover";
         "myallychou@gmail.com" = "unhook";
+        "sponsorBlocker@ajay.app" = "sponsorblock";
       };
       Preferences = mkLockedAttrs {
         "browser.aboutConfig.showWarning" = false;
