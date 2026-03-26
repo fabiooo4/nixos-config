@@ -8,6 +8,7 @@
   config = lib.mkIf (!config.userSettings.dotfiles.kitty.enable) {
     programs.kitty = {
       enable = true;
+      package = pkgs.unstable.kitty;
 
       # TODO: add colorscheme option, and stylix toggle
       # Let stylix handle the colorscheme
@@ -36,6 +37,7 @@
 
         # --- Scrollback ---
         touch_scroll_multiplier = 8.0;
+        pixel_scroll = "yes";
 
         # --- Mouse ---
         url_style = "straight";
