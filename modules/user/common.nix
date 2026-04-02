@@ -13,8 +13,23 @@
       nh
       nix-output-monitor
 
+      # CLI Tools
+      zoxide
+      fzf
+      fd
+      ripgrep
+      eza
+      bat
+      yazi
+      delta
+      codegrab
+      gemini-cli
       xclip
       fastfetch
+
+      # GUI Apps
+      qalculate-gtk
+      gnome-characters
       resources
       showtime # Video viewer
       qimgv # Image viewer

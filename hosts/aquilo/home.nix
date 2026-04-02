@@ -16,21 +16,6 @@
     };
 
     home.packages = with pkgs; [
-      # CLI Tools
-      zoxide
-      fzf
-      eza
-      bat
-      yazi
-      delta
-      codegrab
-      gemini-cli
-
-      # GUI Apps
-      qalculate-gtk
-      zoom-us
-      gnome-characters
-
       custom-pkgs.remote-touchpad
     ];
   };
