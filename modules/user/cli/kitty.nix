@@ -53,6 +53,10 @@
         inactive_border_color = lib.mkIf (osConfig.theme.active != "niri-noctalia") "#D65D0E";
         hide_window_decorations = "yes";
 
+        # --- Transparency ---
+        background_opacity = 0.80;
+        background_blur = 0;
+
         # --- Tab Bar ---
         tab_bar_min_tabs = 2;
         tab_bar_edge = "top";

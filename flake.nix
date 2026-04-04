@@ -19,6 +19,14 @@
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
+
+        overlays = [
+          (unstableFinal: unstablePrev: {
+            # TODO: Remove when the blur pull request gets merged
+            # https://github.com/niri-wm/niri/pull/3483
+            niri-blur = inputs.niri-blur-unstable.packages.${system}.default;
+          })
+        ];
       };
     };
 
@@ -94,6 +102,13 @@
     # Themes ---------------------------------------------------------
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
+
+    # TODO: Remove when the blur pull request gets merged
+    # https://github.com/niri-wm/niri/pull/3483
+    niri-blur-unstable = {
+      url = "github:YaLTeR/niri?ref=wip/branch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
