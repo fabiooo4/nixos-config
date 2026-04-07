@@ -80,6 +80,7 @@
       texliveFull
       gnumake
       python3
+      jdt-language-server
       # --------------
     ];
   };
