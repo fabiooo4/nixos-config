@@ -82,9 +82,18 @@
         enable = true;
 
         # Activate calendar support
-        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-          calendarSupport = true;
-        };
+        package =
+          (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+            calendarSupport = true;
+          }).overrideAttrs (oldAttrs: {
+            # Dependencies for Wallcards noctalia plugin
+            buildInputs =
+              (oldAttrs.buildInputs or [])
+              ++ [
+                pkgs.unstable.qt6.qt5compat
+                pkgs.unstable.qt6.qtsvg
+              ];
+          });
 
         settings =
           lib.recursiveUpdate
@@ -217,6 +226,15 @@
                     id = "Brightness";
                     displayMode = "onhover";
                   }
+
+                  (
+                    if config.programs.noctalia-shell.plugins.states.wallcards.enabled
+                    then {
+                      id = "plugin:wallcards";
+                    }
+                    else {}
+                  )
+
                   {
                     id = "ControlCenter";
                     colorizeDistroLogo = false;
