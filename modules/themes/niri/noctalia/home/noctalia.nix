@@ -184,6 +184,14 @@
                     showLabelsOnlyWhenOccupied = true;
                     unfocusedIconsOpacity = 1;
                   }
+
+                  (
+                    if config.programs.noctalia-shell.plugins.states.weekly-calendar.enabled
+                    then {
+                      id = "plugin:screen-toolkit";
+                    }
+                    else {}
+                  )
                 ];
                 right = [
                   {
