@@ -16,9 +16,9 @@
 
       # TODO: Add font option
       font = lib.mkForce {
-        name = "DeterminationMonoWeb Nerd Font Mono";
+        name = "Scientifica Mono";
         size = 15;
-        package = pkgs.custom-pkgs.determinationMono;
+        package = pkgs.custom-pkgs.scientifica;
       };
 
       settings = {
