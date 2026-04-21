@@ -25,6 +25,7 @@
       codegrab
       gemini-cli
       xclip
+      wl-clipboard
       fastfetch
 
       # GUI Apps
