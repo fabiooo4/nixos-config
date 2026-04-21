@@ -16,9 +16,9 @@
 
       # TODO: Add font option
       font = lib.mkForce {
-        name = "Bedstead Nerd Font";
+        name = "DeterminationMonoWeb Nerd Font Mono";
         size = 15;
-        package = pkgs.custom-pkgs.bedstead;
+        package = pkgs.custom-pkgs.determinationMono;
       };
 
       settings = {

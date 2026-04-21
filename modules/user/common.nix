@@ -5,9 +5,6 @@
   ...
 }: {
   config = {
-    # Enable fonts from pkgs list
-    fonts.fontconfig.enable = true;
-
     home.packages = with pkgs; [
       # Nix management
       nh
