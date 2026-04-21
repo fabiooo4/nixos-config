@@ -36,6 +36,7 @@
       nautilus # File explorer
       baobab # Disk usage
       gnome-calendar
+      gparted # Partition manager
     ];
 
     home.stateVersion = "24.11";
