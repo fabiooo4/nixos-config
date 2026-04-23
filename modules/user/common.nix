@@ -24,6 +24,7 @@
       xclip
       wl-clipboard
       fastfetch
+      gh
 
       # GUI Apps
       qalculate-gtk
