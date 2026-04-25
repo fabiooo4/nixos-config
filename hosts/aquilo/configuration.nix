@@ -16,6 +16,7 @@
       touchpad.enable = true;
 
       drawingTablet.enable = true;
+      joycons.enable = true;
 
       networking = {
         bluetooth.enable = true;
