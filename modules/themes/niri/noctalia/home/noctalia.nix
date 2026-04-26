@@ -179,6 +179,14 @@
                   }
                 ];
                 center = [
+                  (
+                    if config.programs.noctalia-shell.plugins.states.mirror-mirror.enabled
+                    then {
+                      id = "plugin:mirror-mirror";
+                    }
+                    else {}
+                  )
+
                   {
                     id = "Workspace";
                     characterCount = 2;
@@ -195,7 +203,7 @@
                   }
 
                   (
-                    if config.programs.noctalia-shell.plugins.states.weekly-calendar.enabled
+                    if config.programs.noctalia-shell.plugins.states.screen-toolkit.enabled
                     then {
                       id = "plugin:screen-toolkit";
                     }
