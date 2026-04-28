@@ -40,6 +40,7 @@
     extraPackages = with pkgs; [
       # LSP
       clang-tools
+      rust-analyzer
       lua-language-server
       vscode-langservers-extracted
       marksman
