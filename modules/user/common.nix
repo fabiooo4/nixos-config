@@ -25,7 +25,6 @@
       wl-clipboard
       fastfetch
       gh
-      btop
 
       # GUI Apps
       qalculate-gtk
