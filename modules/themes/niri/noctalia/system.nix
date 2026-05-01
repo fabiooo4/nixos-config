@@ -15,6 +15,14 @@
         wayland = true;
       };
 
+      boot.plymouth = {
+        enable = true;
+        theme = "connect";
+        themePackages = with pkgs; [
+          adi1090x-plymouth-themes
+        ];
+      };
+
       programs.niri = {
         enable = true;
         # TODO: Remove when the blur pull request gets merged
