@@ -22,8 +22,7 @@
       # TODO: replace with proper config includes after https://github.com/sodiboo/niri-flake/pull/1548 merge
       xdg.configFile = (
         let
-          # TODO: Remove when the blur pull request gets merged
-          # https://github.com/niri-wm/niri/pull/3483
+          # TODO: Remove when niri-flake gets updated
           blur-unstable =
             pkgs.writeText "blur-unstable.kdl"
             # kdl

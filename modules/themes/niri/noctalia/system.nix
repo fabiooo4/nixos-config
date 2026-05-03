@@ -25,9 +25,7 @@
 
       programs.niri = {
         enable = true;
-        # TODO: Remove when the blur pull request gets merged
-        # https://github.com/niri-wm/niri/pull/3483
-        package = pkgs.unstable.niri-blur;
+        package = pkgs.unstable.niri;
       };
 
       # Enable calendar events

@@ -30,10 +30,8 @@
       };
 
       programs.niri = {
+        package = pkgs.unstable.niri;
         enable = true;
-        # TODO: Remove when the blur pull request gets merged
-        # https://github.com/niri-wm/niri/pull/3483
-        package = pkgs.unstable.niri-blur;
         settings = {
           environment = {
             SHLVL = "0";
