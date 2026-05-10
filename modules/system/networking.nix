@@ -19,8 +19,14 @@
       # Enable networking
       networkmanager.enable = true;
 
-      # remote-touchpad
-      firewall.allowedTCPPorts = [43877];
+      firewall.allowedTCPPorts = [
+        # remote-touchpad
+        43877
+
+        # minecraft
+        25655
+        24454
+      ];
 
       # wireless.enable = lib.mkIf cfg.networking.wifi.enable true;
 

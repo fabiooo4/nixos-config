@@ -24,6 +24,7 @@
         openrgb
       )
       pkgs.unstable.prismlauncher
+      openjdk21
     ];
   };
 }
