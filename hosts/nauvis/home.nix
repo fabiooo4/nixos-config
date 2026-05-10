@@ -23,6 +23,7 @@
         osConfig.systemSettings.rgb.enable
         openrgb
       )
+      pkgs.unstable.prismlauncher
     ];
   };
 }

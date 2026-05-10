@@ -17,7 +17,13 @@
   in
     lib.mkIf enabled {
       # X11 app support
-      home.packages = [pkgs.xwayland-satellite];
+      home.packages = with pkgs; [
+        xwayland-satellite
+
+        # GTK support
+        gtk3
+        adwaita-icon-theme
+      ];
 
       # Cursor theme
       # TODO: Make option
