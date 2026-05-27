@@ -25,6 +25,7 @@
       )
       pkgs.unstable.prismlauncher
       openjdk21
+      discord
     ];
   };
 }
