@@ -26,6 +26,9 @@
         # minecraft
         25655
         24454
+
+        # esp32 ota https server
+        8070
       ];
 
       # wireless.enable = lib.mkIf cfg.networking.wifi.enable true;
