@@ -27,7 +27,7 @@
             isNormalUser = true;
             initialPassword = "1234";
             # Add wheel (sudo) only for admin users
-            extraGroups = ["networkmanager"] ++ lib.optionals (lib.any (adminUser: adminUser == user) config.systemSettings.adminUsers) ["wheel"];
+            extraGroups = ["networkmanager" "dialout"] ++ lib.optionals (lib.any (adminUser: adminUser == user) config.systemSettings.adminUsers) ["wheel"];
           };
         })
         config.systemSettings.users);
