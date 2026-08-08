@@ -1,9 +1,14 @@
 {
+  osConfig,
   pkgs,
   lib,
   inputs,
   ...
 }: {
+  imports = [
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+  ];
+
   config = {
     home.packages = with pkgs; [
       # Nix management
@@ -35,6 +40,10 @@
       nautilus # File explorer
       baobab # Disk usage
       gnome-calendar
+    ];
+
+    services.flatpak.packages = lib.mkIf osConfig.systemSettings.flatpak.enable [
+      "com.discordapp.Discord"
     ];
 
     home.stateVersion = "24.11";
