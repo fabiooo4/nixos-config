@@ -30,6 +30,7 @@
       wl-clipboard
       fastfetch
       gh
+      wget
 
       # GUI Apps
       qalculate-gtk
