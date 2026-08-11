@@ -8,6 +8,7 @@
       nerd-fonts.symbols-only
       nerd-fonts.space-mono
       nerd-fonts.caskaydia-cove
+      nerd-fonts.jetbrains-mono
       custom-pkgs.bedstead
       custom-pkgs.scientifica
     ];
