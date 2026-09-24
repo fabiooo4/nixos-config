@@ -65,7 +65,7 @@
           # Zoom and Navigation
           zoom_inc_factor = "1.2";
           vertical_move_amount = "1.0";
-          horizontal_move_amount = "0.0";
+          horizontal_move_amount = "1.0";
           move_screen_ratio = "0.5";
           wheel_zoom_on_cursor = "0";
           page_separator_width = "2";

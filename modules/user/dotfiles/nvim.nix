@@ -57,6 +57,7 @@
       ))
       matlab-language-server
       nil
+      tinymist
 
       # Neovim plugin dependencies
       imagemagick
@@ -79,10 +80,12 @@
       unzip
       wget
       tree-sitter
-      texliveFull
       gnumake
       python3
       jdt-language-server
+
+      texliveFull
+      typst
       # --------------
     ];
   };
