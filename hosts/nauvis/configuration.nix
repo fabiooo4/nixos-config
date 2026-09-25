@@ -14,10 +14,6 @@
           hash = "sha256-ZRcjR2t2r1RoykaslIJ3RjoxepSY9b8jZLH59b1raqw=";
         };
       };
-
-      niri-noctalia = {
-        bar.density = "comfortable";
-      };
     };
 
     systemSettings = {

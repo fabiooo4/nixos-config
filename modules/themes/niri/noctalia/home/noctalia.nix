@@ -100,20 +100,9 @@
                 directory = path;
               };
 
-            # general = {
-            #   scaleRatio = cfg.interface.scaling;
-            # };
-            #
-            # bar = {
-            #   density = cfg.bar.density;
-            # };
-
-            # pluginSettings = {
-            #   catwalk = {
-            #     minimumThreshold = 25;
-            #     hideBackground = true;
-            #   };
-            # };
+            bar = {
+              widgets.margin_ends = builtins.floor ((1920 / 2) * (1 - cfg.bar.percent));
+            };
           };
       };
     };

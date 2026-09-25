@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{...}: {
   config = {
     theme = {
       active = "niri-noctalia";
 
       niri-noctalia = {
-        bar.density = "comfortable";
+        bar.percent = 0.575;
       };
     };
 
