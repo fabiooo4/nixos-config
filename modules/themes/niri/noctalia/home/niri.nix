@@ -26,13 +26,12 @@
       ];
 
       # Cursor theme
-      # TODO: Make option
       home.pointerCursor = {
         gtk.enable = true;
         x11.enable = true;
-        name = "XCursor-Pro-Dark";
-        package = pkgs.xcursor-pro;
-        size = 24;
+        name = cfg.cursor.name;
+        package = cfg.cursor.package;
+        size = cfg.cursor.size;
       };
 
       programs.niri = {
@@ -44,7 +43,7 @@
           };
 
           spawn-at-startup = [
-            {command = ["noctalia-shell"];}
+            {command = ["noctalia"];}
             {command = ["xwayland-satellite"];}
           ];
 
@@ -83,7 +82,7 @@
             {
               matches = [
                 {
-                  namespace = "^noctalia-overview*";
+                  namespace = "^noctalia-backdrop";
                 }
               ];
               place-within-backdrop = true;

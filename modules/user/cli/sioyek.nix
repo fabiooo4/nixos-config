@@ -34,7 +34,10 @@
           check_for_updates_on_startup = "0";
           use_legacy_keybinds = "0";
           should_load_tutorial_when_no_other_file = "1";
-          startup_commands = "toggle_titlebar;toggle_custom_color";
+          startup_commands = [
+            "toggle_titlebar"
+            "toggle_custom_color"
+          ];
 
           # Appearance
           background_color = "0.97 0.97 0.97";

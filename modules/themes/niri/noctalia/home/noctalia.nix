@@ -15,14 +15,8 @@
     cfg = osConfig.theme.${themeName};
     enabled = osConfig.theme.active == themeName;
 
-    # Helper to call noctalia-shell ipc commands as strings instead of lists of strings
-    noctalia = cmd:
-      [
-        "noctalia-shell"
-        "ipc"
-        "call"
-      ]
-      ++ (pkgs.lib.splitString " " cmd);
+    # Helper to call noctalia ipc commands as strings instead of lists of strings
+    noctalia = cmd: ["noctalia" "msg"] ++ (pkgs.lib.splitString " " cmd);
   in
     lib.mkIf enabled
     {
@@ -53,15 +47,15 @@
       # Noctalia niri keybinds
       programs.niri.settings.binds = {
         # Utilities ----------------------------------------
-        "Mod+Space".action.spawn = noctalia "launcher toggle";
-        "Mod+C".action.spawn = noctalia "launcher clipboard";
-        "Mod+N".action.spawn = noctalia "notifications dismissAll";
+        "Mod+Space".action.spawn = noctalia "panel-toggle launcher";
+        "Mod+C".action.spawn = noctalia "panel-toggle clipboard";
+        "Mod+N".action.spawn = noctalia "notification-clear-active";
 
         # Audio controls
-        "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
-        "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
-        "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
-        "XF86AudioMicMute".action.spawn = noctalia "volume muteInput";
+        "XF86AudioLowerVolume".action.spawn = noctalia "volume-down";
+        "XF86AudioRaiseVolume".action.spawn = noctalia "volume-up";
+        "XF86AudioMute".action.spawn = noctalia "volume-mute";
+        "XF86AudioMicMute".action.spawn = noctalia "mic-volume-set 0";
 
         "XF86AudioPlay".action.spawn = noctalia "media playPause";
         "XF86AudioStop".action.spawn = noctalia "media stop";
@@ -70,320 +64,57 @@
         # Audio controls
 
         # Brightness controls
-        "XF86MonBrightnessUp".action.spawn = noctalia "brightness increase";
-        "XF86MonBrightnessDown".action.spawn = noctalia "brightness decrease";
+        "XF86MonBrightnessUp".action.spawn = noctalia "brightness-up";
+        "XF86MonBrightnessDown".action.spawn = noctalia "brightness-down";
         # Brightness controls
         # Utilities ----------------------------------------
       };
 
       # To see the diff of current settings and the gui modified ones run:
       # nix shell nixpkgs#jq nixpkgs#colordiff nixpkgs#wl-clipboard -c bash -c "diff -u <(jq -S . ~/.config/noctalia/settings.json) <(wl-paste | jq -S .) | colordiff"
-      programs.noctalia-shell = {
+      programs.noctalia = {
         enable = true;
 
         # Activate calendar support
-        package =
-          (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-            calendarSupport = true;
-          }).overrideAttrs (oldAttrs: {
-            # Dependencies for Wallcards noctalia plugin
-            buildInputs =
-              (oldAttrs.buildInputs or [])
-              ++ [
-                pkgs.unstable.qt6.qt5compat
-                pkgs.unstable.qt6.qtsvg
-              ];
-          });
+        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
+          # TODO: Remove when fixed
+          nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.qt6.wrapQtAppsHook];
+
+          # Dependencies for Wallcards noctalia plugin
+          buildInputs =
+            (oldAttrs.buildInputs or [])
+            ++ [
+              pkgs.unstable.qt6.qt5compat
+              pkgs.unstable.qt6.qtsvg
+            ];
+        });
 
         settings =
           lib.recursiveUpdate
-          (import ./.noctalia-defaults.nix)
+          (fromTOML (builtins.readFile ./noctalia-config.toml))
           {
-            wallpaper = {
-              overviewEnabled = true;
-              directory = "${config.home.homeDirectory}/Pictures/Wallpapers"; # TODO: Check this path exists
-              hideWallpaperFilenames = true;
-            };
-
-            general = {
-              scaleRatio = cfg.interface.scaling;
-              animationSpeed = 1.5;
-              shadowDirection = "bottom";
-
-              compactLockScreen = true;
-            };
-
-            ui = {
-              panelBackgroundOpacity = 1;
-            };
-
-            # Dynamic colorscheme
-            colorSchemes = {
-              useWallpaperColors = true;
-              generationMethod = "content"; # TODO: Make option
-            };
-            templates.enableUserTheming = true;
-
-            bar = {
-              backgroundOpacity = 1;
-              density = cfg.bar.density;
-              position = "left";
-              showCapsule = false;
-              widgets = {
-                left = [
-                  {
-                    id = "Battery";
-                    deviceNativePath = "BATT";
-                    displayMode = "onhover";
-                    hideIfIdle = false;
-                    hideIfNotDetected = true;
-                    showNoctaliaPerformance = true;
-                    showPowerProfiles = true;
-                    warningThreshold = 30;
-                  }
-                  {
-                    id = "Clock";
-                    customFont = "";
-                    formatHorizontal = "HH:mm ddd, MMM dd";
-                    formatVertical = "HH mm — dd MM";
-                    tooltipFormat = "HH:mm ddd, MMM dd";
-                    useCustomFont = false;
-                    usePrimaryColor = false;
-                  }
-
-                  (
-                    if config.programs.noctalia-shell.plugins.states.weekly-calendar.enabled
-                    then {
-                      id = "plugin:weekly-calendar";
-                    }
-                    else {}
-                  )
-
-                  {
-                    id = "MediaMini";
-                    compactMode = false;
-                    compactShowAlbumArt = true;
-                    compactShowVisualizer = false;
-                    hideMode = "hidden";
-                    hideWhenIdle = false;
-                    maxWidth = 145;
-                    panelShowAlbumArt = true;
-                    panelShowVisualizer = true;
-                    scrollingMode = "hover";
-                    showAlbumArt = true;
-                    showArtistFirst = true;
-                    showProgressRing = true;
-                    showVisualizer = false;
-                    useFixedWidth = false;
-                    visualizerType = "linear";
-                  }
-                ];
-                center = [
-                  (
-                    if config.programs.noctalia-shell.plugins.states.mirror-mirror.enabled
-                    then {
-                      id = "plugin:mirror-mirror";
-                    }
-                    else {}
-                  )
-
-                  {
-                    id = "Workspace";
-                    characterCount = 2;
-                    colorizeIcons = false;
-                    enableScrollWheel = true;
-                    followFocusedScreen = false;
-                    groupedBorderOpacity = 1;
-                    hideUnoccupied = false;
-                    iconScale = 0.8;
-                    labelMode = "index";
-                    showApplications = false;
-                    showLabelsOnlyWhenOccupied = true;
-                    unfocusedIconsOpacity = 1;
-                  }
-
-                  (
-                    if config.programs.noctalia-shell.plugins.states.screen-toolkit.enabled
-                    then {
-                      id = "plugin:screen-toolkit";
-                    }
-                    else {}
-                  )
-                ];
-                right = [
-                  {
-                    id = "Tray";
-                    blacklist = [];
-                    colorizeIcons = false;
-                    drawerEnabled = true;
-                    hidePassive = false;
-                    pinned = [];
-                  }
-                  {
-                    id = "NotificationHistory";
-                    hideWhenZero = false;
-                    hideWhenZeroUnread = false;
-                    showUnreadBadge = true;
-                  }
-                  {
-                    id = "Volume";
-                    displayMode = "onhover";
-                    middleClickCommand = "pwvucontrol || pavucontrol";
-                  }
-                  {
-                    id = "Brightness";
-                    displayMode = "onhover";
-                  }
-
-                  (
-                    if config.programs.noctalia-shell.plugins.states.wallcards.enabled
-                    then {
-                      id = "plugin:wallcards";
-                    }
-                    else {}
-                  )
-
-                  {
-                    id = "ControlCenter";
-                    colorizeDistroLogo = false;
-                    colorizeSystemIcon = "primary";
-                    customIconPath = "";
-                    enableColorization = true;
-                    icon = "noctalia";
-                    useDistroLogo = true;
-                  }
-                ];
+            wallpaper = let
+              path = "${config.home.homeDirectory}/Pictures/Wallpapers";
+            in
+              lib.optionalAttrs (builtins.pathExists path) {
+                directory = path;
               };
-            };
 
-            dock.enabled = false;
+            # general = {
+            #   scaleRatio = cfg.interface.scaling;
+            # };
+            #
+            # bar = {
+            #   density = cfg.bar.density;
+            # };
 
-            controlCenter = {
-              shortcuts = {
-                left = [
-                  {id = "Network";}
-                  {id = "Bluetooth";}
-                  {id = "WallpaperSelector";}
-                  {id = "Notifications";}
-                ];
-                right = [
-                  {id = "NoctaliaPerformance";}
-                  {id = "PowerProfile";}
-                  {id = "KeepAwake";}
-                  {id = "NightLight";}
-                ];
-              };
-              cards = [
-                {
-                  id = "profile-card";
-                  enabled = true;
-                }
-                {
-                  id = "shortcuts-card";
-                  enabled = true;
-                }
-                {
-                  id = "media-sysmon-card";
-                  enabled = true;
-                }
-                {
-                  id = "weather-card";
-                  enabled = true;
-                }
-                {
-                  id = "audio-card";
-                  enabled = false;
-                }
-                {
-                  id = "brightness-card";
-                  enabled = false;
-                }
-              ];
-            };
-
-            appLauncher = {
-              enableClipboardHistory = true;
-              enableSettingsSearch = false;
-              enableWindowsSearch = false;
-              overviewLayer = true;
-              terminalCommand = "kitty -e";
-              viewMode = "grid";
-            };
-
-            notifications = {
-              enabled = true;
-              lowUrgencyDuration = 2;
-              saveToHistory = {
-                low = false;
-                normal = true;
-                critical = true;
-              };
-            };
-
-            osd.autoHideMs = 1000;
-
-            sessionMenu = {
-              largeButtonsStyle = true;
-              powerOptions = [
-                {
-                  action = "shutdown";
-                  enabled = true;
-                }
-                {
-                  action = "reboot";
-                  enabled = true;
-                }
-                {
-                  action = "suspend";
-                  enabled = true;
-                }
-                {
-                  action = "lock";
-                  enabled = true;
-                }
-                {
-                  action = "hibernate";
-                  enabled = true;
-                }
-                {
-                  action = "logout";
-                  enabled = true;
-                }
-              ];
-            };
-
-            audio = {
-              cavaFrameRate = 60;
-              volumeFeedback = true;
-            };
-
-            location = {
-              name = "Milan";
-              showWeekNumberInCalendar = true;
-              analogClockInCalendar = true;
-              firstDayOfWeek = 1;
-              hideWeatherTimezone = true;
-              hideWeatherCityName = true;
-            };
+            # pluginSettings = {
+            #   catwalk = {
+            #     minimumThreshold = 25;
+            #     hideBackground = true;
+            #   };
+            # };
           };
-
-        plugins = {
-          version = 2;
-          sources = [
-            {
-              enabled = true;
-              name = "Official Noctalia Plugins";
-              url = "https://github.com/noctalia-dev/noctalia-plugins";
-            }
-          ];
-        };
-
-        pluginSettings = {
-          catwalk = {
-            minimumThreshold = 25;
-            hideBackground = true;
-          };
-        };
       };
     };
 }

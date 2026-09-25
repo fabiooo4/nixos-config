@@ -1,18 +1,37 @@
 {
   lib,
+  inputs,
   pkgs,
   config,
   themeName,
   ...
 }: {
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
+
   config = let
     cfg = config.theme.${themeName};
     enabled = config.theme.active == themeName;
   in
     lib.mkIf enabled {
-      services.displayManager.gdm = {
+      services.displayManager.noctalia-greeter = {
         enable = true;
-        wayland = true;
+
+        passwordless-sync-users = ["fabibo"];
+
+        cursorTheme.package = cfg.cursor.package;
+
+        settings = {
+          cursor = {
+            theme = cfg.cursor.name;
+            size = cfg.cursor.size;
+          };
+          keyboard = {
+            layout = "us";
+            variant = "intl";
+          };
+        };
       };
 
       programs.niri = {

@@ -11,7 +11,7 @@
   in
     lib.mkIf enabled
     {
-      programs.noctalia-shell.settings.templates.activeTemplates = [
+      programs.noctalia.settings.templates.activeTemplates = [
         {
           id = "niri";
           enabled = true;

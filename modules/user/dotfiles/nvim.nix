@@ -29,6 +29,13 @@
     defaultEditor = true;
     package = pkgs.unstable.neovim-unwrapped;
 
+    # Stop Home Manager from writing to ~/.config/nvim/init.lua
+    sideloadInitLua = true;
+
+    withPython3 = true;
+    withRuby = true;
+    withNodeJs = true;
+
     extraWrapperArgs = [
       "--prefix"
       "LD_LIBRARY_PATH"
@@ -69,7 +76,7 @@
       nixd
       nil
       alejandra
-      nodePackages.prettier
+      prettier
       black
       ripgrep
       gcc

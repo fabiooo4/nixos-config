@@ -25,7 +25,6 @@
       yazi
       delta
       codegrab
-      pkgs.unstable.gemini-cli
       xclip
       wl-clipboard
       fastfetch

@@ -11,7 +11,7 @@
   in
     lib.mkIf enabled
     {
-      programs.noctalia-shell.settings.templates.activeTemplates = [
+      programs.noctalia.settings.templates.activeTemplates = [
         {
           id = "gtk";
           enabled = true;
@@ -33,6 +33,7 @@
         # };
         gtk4 = {
           enable = true;
+          theme = null;
           extraCss = "@import './noctalia.css'";
           colorScheme = "dark";
         };

@@ -29,10 +29,14 @@ with lib; let
   in
     replaceStrings ["/"] ["-"] relativePath;
 
-  # Returns the list of all .nix files except this one and the ones that begin with .
+  # Returns the list of all .nix files except this one and hidden files
   themeConfigs =
     filter
-    (filePath: filePath != ./default.nix && !(lib.strings.hasPrefix "." (baseNameOf filePath)))
+    (filePath:
+      filePath
+      != ./default.nix
+      && hasSuffix ".nix" (baseNameOf filePath)
+      && !(hasPrefix "." (baseNameOf filePath)))
     (filesystem.listFilesRecursive themesDir);
 
   # List of valid theme names for the enumerator
