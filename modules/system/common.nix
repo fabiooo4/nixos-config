@@ -55,10 +55,18 @@
           "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1CLF9t6+ics/FjKny5R6w0c8="
         ];
 
+
         auto-optimise-store = true;
 
         max-jobs = "auto";
         cores = 0;
+      };
+
+      # Automatic garbage collection
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 10d";
       };
 
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
@@ -118,8 +126,13 @@
     };
 
     # Bootloader
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 15;
+      };
+      efi.canTouchEfiVariables = true;
+    };
 
     # Internationalisation properties.
     time.timeZone = "Europe/Rome";
