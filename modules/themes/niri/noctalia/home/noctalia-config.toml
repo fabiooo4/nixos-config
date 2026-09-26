@@ -36,7 +36,7 @@ order = [ "widgets" ]
     hover_highlight = true
     layer = "top"
     margin_edge = 0
-    margin_ends = 408.00000000000006
+    margin_ends = 576
     margin_opposite_edge = 0
     padding = 14
     panel_overlap = 1
@@ -371,6 +371,7 @@ background_opacity = 0.97000002861022949
 border = false
 collapse_on_dismiss = true
 enable_daemon = true
+filter_order = [ "filter", "filter-2", "filter-3" ]
 history_retention_hours = 8
 keep_dismissed_in_history = false
 layer = "overlay"
@@ -382,6 +383,33 @@ position = "top_right"
 scale = 1.0
 show_actions = true
 show_app_name = true
+
+    [notification.filter.filter]
+    allow_permanent = true
+    bypass_dnd = false
+    enabled = true
+    match = "zen browser"
+    play_sound = false
+    save_history = true
+    show_toast = true
+
+    [notification.filter.filter-2]
+    allow_permanent = true
+    bypass_dnd = false
+    enabled = true
+    match = "discord"
+    play_sound = false
+    save_history = true
+    show_toast = true
+
+    [notification.filter.filter-3]
+    allow_permanent = true
+    bypass_dnd = false
+    enabled = true
+    match = "steam"
+    play_sound = false
+    save_history = true
+    show_toast = true
 
 [osd]
 background_opacity = 0.97000002861022949
@@ -670,9 +698,38 @@ ram_pct_critical_threshold = 90.0
 swap_pct_activity_threshold = 20.0
 swap_pct_critical_threshold = 80.0
 
+[templates.openrgb]
+input_path = "/nix/store/ajx5qbngk73d18cz2qzxcmzc009i5724-openrgbTemplate.sh"
+output_path = "/home/fabibo/.config/OpenRGB/noctaliaTemplate.sh"
+post_hook = "bash /home/fabibo/.config/OpenRGB/noctaliaTemplate.sh"
+
 [templates.sioyek]
 input_path = "/nix/store/24a0zlmqvhcahacx0xs0g29ivdjhw1c0-sioyekTemplate.config"
 output_path = "/home/fabibo/.config/sioyek/colorscheme.config"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "zenBrowser"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "discord"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "spicetify"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "niri"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "kitty"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "gtk"
 
 [[templates.activeTemplates]]
 enabled = true
@@ -725,7 +782,7 @@ fill_mode = "crop"
 per_monitor_directories = false
 transition = [ "fade", "wipe", "disc", "stripes", "zoom", "honeycomb" ]
 transition_duration = 1500.0
-transition_on_startup = false
+transition_on_startup = true
 
     [wallpaper.automation]
     enabled = false
