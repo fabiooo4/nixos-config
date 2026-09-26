@@ -5,6 +5,7 @@
 
       niri-noctalia = {
         bar.percent = 0.575;
+        idle.enable = true;
       };
     };
 

@@ -103,6 +103,12 @@
             bar = {
               widgets.margin_ends = builtins.floor ((1920 / 2) * (1 - cfg.bar.percent));
             };
+
+            idle.behavior = {
+              lock.enabled = cfg.idle.enable;
+              lock-and-suspend.enabled = cfg.idle.enable;
+              screen-off.enabled = cfg.idle.enable;
+            };
           };
       };
     };

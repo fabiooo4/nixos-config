@@ -13,6 +13,12 @@
       };
     };
 
+    idle.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable automatic lock and suspend";
+    };
+
     cursor = lib.mkOption {
       default = {
         name = "XCursor-Pro-Dark";
