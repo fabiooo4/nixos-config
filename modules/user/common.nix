@@ -30,6 +30,7 @@
       fastfetch
       gh
       wget
+      pkgs.unstable.antigravity-cli
 
       # GUI Apps
       qalculate-gtk

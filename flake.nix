@@ -95,8 +95,6 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
     zen-browser.inputs.home-manager.follows = "home-manager";
-
-    llm-agents.url = "github:numtide/llm-agents.nix";
     # Programs -------------------------------------------------------
 
     # Themes ---------------------------------------------------------
