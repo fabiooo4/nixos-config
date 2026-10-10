@@ -33,6 +33,12 @@
     sideloadInitLua = true;
 
     withPython3 = true;
+    extraPython3Packages = ps:
+      with ps; [
+        pynvim
+        jupyter-client
+      ];
+
     withRuby = true;
     withNodeJs = true;
 
@@ -88,7 +94,6 @@
       wget
       tree-sitter
       gnumake
-      python3
       jdt-language-server
 
       texliveFull

@@ -55,7 +55,6 @@
           "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1CLF9t6+ics/FjKny5R6w0c8="
         ];
 
-
         auto-optimise-store = true;
 
         max-jobs = "auto";
