@@ -239,7 +239,7 @@ pre_action_fade_seconds = 2.0
     [idle.behavior.lock]
     action = "lock"
     command = ""
-    enabled = true
+    enabled = false
     locked_timeout = 0.0
     resume_command = ""
     timeout = 600.0
@@ -247,7 +247,7 @@ pre_action_fade_seconds = 2.0
     [idle.behavior.lock-and-suspend]
     action = "lock_and_suspend"
     command = ""
-    enabled = true
+    enabled = false
     locked_timeout = 0.0
     resume_command = ""
     timeout = 900.0
@@ -255,7 +255,7 @@ pre_action_fade_seconds = 2.0
     [idle.behavior.screen-off]
     action = "screen_off"
     command = ""
-    enabled = true
+    enabled = false
     locked_timeout = 0.0
     resume_command = ""
     timeout = 660.0
@@ -755,6 +755,30 @@ id = "kitty"
 enabled = true
 id = "gtk"
 
+[[templates.activeTemplates]]
+enabled = true
+id = "zenBrowser"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "discord"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "spicetify"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "niri"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "kitty"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "gtk"
+
 [theme]
 builtin = "Noctalia"
 community_palette = "Catppuccin Frappe Mauve"
@@ -767,7 +791,7 @@ wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
     builtin_ids = [ "gtk3", "gtk4", "kitty", "niri" ]
-    community_ids = [ "spicetify", "zen-browser", "discord" ]
+    community_ids = [ "spicetify", "zen-browser", "discord", "sioyek" ]
     enable_builtin_templates = true
     enable_community_templates = true
 
@@ -794,6 +818,9 @@ transition_on_startup = true
     path = "/home/fabibo/Pictures/Wallpapers/wallhaven-e89o9l_1920x1080.png"
 
     [wallpaper.last]
+    path = "/home/fabibo/Pictures/Wallpapers/wallhaven-e89o9l_1920x1080.png"
+
+    [wallpaper.monitors.HDMI-A-1]
     path = "/home/fabibo/Pictures/Wallpapers/wallhaven-e89o9l_1920x1080.png"
 
     [wallpaper.monitors.eDP-1]

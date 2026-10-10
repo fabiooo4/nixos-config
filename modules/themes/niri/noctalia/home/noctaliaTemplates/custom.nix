@@ -38,11 +38,8 @@
     lib.mkIf enabled
     {
       xdg.configFile."noctalia/user-templates.toml".source = pkgs.writeText "user-templates.toml" ''
-        [config]
-
-        [templates]
         ${lib.concatStrings (lib.mapAttrsToList (name: template: ''
-            [templates.${name}]
+            [theme.templates.user.${name}]
             input_path = "${template.inputPath}"
             output_path = "${template.outputPath}"
             ${lib.optionalString (template.postHook != null) "post_hook = \"${template.postHook}\""}
