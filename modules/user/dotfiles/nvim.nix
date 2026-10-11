@@ -33,12 +33,6 @@
     sideloadInitLua = true;
 
     withPython3 = true;
-    extraPython3Packages = ps:
-      with ps; [
-        pynvim
-        jupyter-client
-      ];
-
     withRuby = true;
     withNodeJs = true;
 
@@ -51,6 +45,18 @@
 
     extraLuaPackages = ps: [ps.magick];
 
+    extraPython3Packages = ps:
+      with ps; [
+        pynvim
+        jupyter-client
+        cairosvg
+        pnglatex
+        plotly
+        kaleido
+        pyperclip
+        nbformat
+      ];
+
     extraPackages = with pkgs; [
       # LSP
       clang-tools
@@ -62,10 +68,14 @@
       svelte-language-server
       tailwindcss-language-server
       typescript-language-server
+      basedpyright
+      ruff
       (python3.withPackages (
         ps:
           with ps; [
             jedi-language-server
+            jupytext
+            ipykernel
           ]
       ))
       matlab-language-server
@@ -98,7 +108,10 @@
 
       texliveFull
       typst
-      # --------------
+
+      # jupyter
+      poppler-utils
+      netpbm
     ];
   };
 }
