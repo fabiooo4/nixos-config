@@ -177,7 +177,6 @@ magnification_scale = 1.4500000476837158
 main_axis_padding = 16
 margin_edge = 0
 margin_ends = 0
-monitors = []
 pinned = []
 position = "bottom"
 radius = 16
@@ -507,8 +506,10 @@ umbriel_overview_type_to_launch_enabled = false
     app_grid = false
     auto_paste = "auto"
     categories = true
+    category_icons_only = true
     compact = false
     fetch_exchange_rates = true
+    layout = "simple"
     pinned = []
     provider_prefix = "/"
     show_app_actions = false
@@ -779,8 +780,32 @@ id = "kitty"
 enabled = true
 id = "gtk"
 
+[[templates.activeTemplates]]
+enabled = true
+id = "zenBrowser"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "discord"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "spicetify"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "niri"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "kitty"
+
+[[templates.activeTemplates]]
+enabled = true
+id = "gtk"
+
 [theme]
-builtin = "Noctalia"
+builtin = "Gruvbox"
 community_palette = "Catppuccin Frappe Mauve"
 custom_palette = ""
 mode = "dark"
@@ -794,6 +819,11 @@ wallpaper_scheme = "m3-tonal-spot"
     community_ids = [ "spicetify", "zen-browser", "discord", "sioyek" ]
     enable_builtin_templates = true
     enable_community_templates = true
+
+        [theme.templates.user.openrgb]
+        input_path = "/nix/store/8b5qmlfrcxaqb4im7i7z1igcbdjyrid5-openrgbTemplate.sh"
+        output_path = "/home/fabibo/.config/OpenRGB/noctaliaTemplate.sh"
+        post_hook = "bash /home/fabibo/.config/OpenRGB/noctaliaTemplate.sh"
 
 [wallpaper]
 directory = "/home/fabibo/Pictures/Wallpapers"
