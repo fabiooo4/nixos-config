@@ -93,6 +93,9 @@
 
           input = {
             mod-key = "Super";
+            keyboard = {
+              repeat-delay = 300;
+            };
           };
 
           # Use wev to find keycodes

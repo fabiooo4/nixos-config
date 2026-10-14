@@ -40,6 +40,7 @@
 
         # Mouse and Touchpad
         "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
+        "org/gnome/desktop/peripherals/keyboard".delay = lib.gvariant.mkUint32 300;
 
         # Keyboard shortcuts
         "org/gnome/desktop/wm/keybindings" = {
