@@ -14,6 +14,40 @@
   config = let
     cfg = osConfig.theme.${themeName};
     enabled = osConfig.theme.active == themeName;
+
+    niri-toggle-focus = pkgs.writeShellScriptBin "niri-toggle-focus" ''
+      FOCUS_FILE="$HOME/.config/niri/gaps.kdl"
+      NIRI="${pkgs.unstable.niri}/bin/niri"
+      NOCTALIA="noctalia"
+
+      if ${pkgs.gnugrep}/bin/grep -q "gaps 0" "$FOCUS_FILE" 2>/dev/null; then
+        # Disable focus mode: clear the override file and restore defaults
+        > "$FOCUS_FILE"
+        "$NIRI" msg action load-config-file 2>/dev/null || true
+        "$NOCTALIA" msg bar-auto-hide-set off 2>/dev/null || true
+        "$NOCTALIA" msg bar-reserve-toggle 2>/dev/null || true
+      else
+        # Enable focus mode: write all overrides
+        mkdir -p "$(dirname "$FOCUS_FILE")"
+        cat > "$FOCUS_FILE" << 'EOF'
+      layout {
+          gaps 0
+          focus-ring { off; }
+          border { off; }
+      }
+
+      window-rule {
+          geometry-corner-radius 0
+          clip-to-geometry true
+      }
+
+      // blur { off; }
+      EOF
+        "$NIRI" msg action load-config-file 2>/dev/null || true
+        "$NOCTALIA" msg bar-auto-hide-set smart 2>/dev/null || true
+        "$NOCTALIA" msg bar-reserve-toggle 2>/dev/null || true
+      fi
+    '';
   in
     lib.mkIf enabled {
       # X11 app support
@@ -168,7 +202,7 @@
             "Mod+Z".action = toggle-column-tabbed-display;
 
             "Mod+F".action = toggle-window-floating;
-            "Mod+Shift+F".action = switch-focus-between-floating-and-tiling;
+            "Mod+Shift+F".action = lib.mkForce (spawn "${niri-toggle-focus}/bin/niri-toggle-focus");
             # Window management --------------------------------
 
             # Utilities ----------------------------------------

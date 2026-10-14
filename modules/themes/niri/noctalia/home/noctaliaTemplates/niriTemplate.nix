@@ -57,7 +57,7 @@
 
           override = true;
           originalFileName = "niri-flake.kdl";
-          filesToInclude = ["noctalia.kdl" blur-unstable];
+          filesToInclude = ["noctalia.kdl" blur-unstable "gaps.kdl"];
           fixBorder = false;
 
           withOriginalConfig = dmsFiles:
@@ -81,7 +81,12 @@
             text = lib.pipe filesToInclude [
               (map (filename: "${filename}"))
               withOriginalConfig
-              (map (filename: "include \"${filename}\""))
+              (map (
+                filename:
+                  if filename == "gaps.kdl"
+                  then "include optional=true \"${filename}\""
+                  else "include \"${filename}\""
+              ))
               (files: files ++ fixes)
               (builtins.concatStringsSep "\n")
             ];
