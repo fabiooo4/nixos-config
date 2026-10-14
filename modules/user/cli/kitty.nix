@@ -32,7 +32,7 @@
         # --- Cursor ---
         cursor = "none";
         cursor_shape = "block";
-        cursor_trail = 1;
+        # cursor_trail = 1;
         cursor_trail_start_threshold = 0;
 
         # --- Scrollback ---
