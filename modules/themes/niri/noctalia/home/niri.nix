@@ -132,6 +132,7 @@
             };
             touchpad = lib.mkIf osConfig.systemSettings.touchpad.enable {
               dwt = lib.mkDefault osConfig.systemSettings.touchpad.disableWhileTyping;
+              click-method = lib.mkDefault osConfig.systemSettings.touchpad.clickMethod;
               accel-speed = lib.mkIf (osConfig.systemSettings.touchpad.sensitivity != null) (
                 lib.mkDefault (
                   if builtins.isString osConfig.systemSettings.touchpad.sensitivity

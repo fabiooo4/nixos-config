@@ -31,6 +31,12 @@
           type = lib.types.bool;
           default = true;
         };
+
+        clickMethod = lib.mkOption {
+          description = "Touchpad click method. Permitted values: 'clickfinger' (two-finger right click, three-finger middle click) or 'button-areas'.";
+          type = lib.types.enum ["clickfinger" "button-areas"];
+          default = "clickfinger";
+        };
       };
     };
   };
@@ -46,6 +52,10 @@
         accelSpeed = cfg.sensitivity;
         disableWhileTyping = cfg.disableWhileTyping;
         tapping = true;
+        clickMethod =
+          if cfg.clickMethod == "button-areas"
+          then "buttonareas"
+          else cfg.clickMethod;
       };
     };
   };
