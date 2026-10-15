@@ -14,6 +14,18 @@
           default = null;
         };
 
+        scrollFactor = lib.mkOption {
+          description = "Touchpad scroll factor / speed multiplier. Values less than 1.0 decrease scroll sensitivity.";
+          type = lib.types.nullOr lib.types.number;
+          default = config.systemSettings.touchpad.scrollSensitivity;
+        };
+
+        scrollSensitivity = lib.mkOption {
+          description = "Alias for scrollFactor.";
+          type = lib.types.nullOr lib.types.number;
+          default = null;
+        };
+
         disableWhileTyping = lib.mkOption {
           description = "Disable touchpad while typing.";
           type = lib.types.bool;

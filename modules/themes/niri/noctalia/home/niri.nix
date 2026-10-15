@@ -130,6 +130,19 @@
             keyboard = {
               repeat-delay = 300;
             };
+            touchpad = lib.mkIf osConfig.systemSettings.touchpad.enable {
+              dwt = lib.mkDefault osConfig.systemSettings.touchpad.disableWhileTyping;
+              accel-speed = lib.mkIf (osConfig.systemSettings.touchpad.sensitivity != null) (
+                lib.mkDefault (
+                  if builtins.isString osConfig.systemSettings.touchpad.sensitivity
+                  then builtins.fromJSON osConfig.systemSettings.touchpad.sensitivity
+                  else osConfig.systemSettings.touchpad.sensitivity
+                )
+              );
+              scroll-factor = lib.mkIf (osConfig.systemSettings.touchpad.scrollFactor != null) (
+                lib.mkDefault osConfig.systemSettings.touchpad.scrollFactor
+              );
+            };
           };
 
           # Use wev to find keycodes
