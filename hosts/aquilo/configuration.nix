@@ -24,6 +24,7 @@
 
       networking = {
         bluetooth.enable = true;
+        tailscale.enable = true;
       };
 
       remaps = {
