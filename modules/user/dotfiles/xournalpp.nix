@@ -3,8 +3,19 @@
   config,
   ...
 }: {
-  home.packages = [
-    pkgs.xournalpp
+  home.packages = with pkgs; [
+    xournalpp
+
+    (texliveBasic.withPackages (ps:
+      with ps; [
+        standalone
+        varwidth
+        eulervm
+        scontents
+        xcolor
+        amsmath
+        amsfonts
+      ]))
   ];
 
   home.file = {

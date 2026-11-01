@@ -18,6 +18,8 @@
     home.packages = with pkgs; [
       custom-pkgs.remote-touchpad
       moonlight-qt
+
+      typst
     ];
   };
 }
