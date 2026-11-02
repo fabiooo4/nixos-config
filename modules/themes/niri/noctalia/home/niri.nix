@@ -99,7 +99,7 @@
           layout = {
             focus-ring = {
               enable = true;
-              width = 4;
+              width = 2;
             };
           };
 
