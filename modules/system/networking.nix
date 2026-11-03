@@ -57,5 +57,7 @@
         "--operator=${builtins.head cfg.adminUsers}"
       ];
     };
+
+    programs.wireshark.enable = true;
   };
 }
